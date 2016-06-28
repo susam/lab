@@ -5,6 +5,7 @@ David Cameron to quit after UK votes to leave EU
 ------------------------------------------------
 2016-06-24: http://www.bbc.com/news/uk-politics-36615028
 
+### Quotes
 > The PM had urged the country to vote Remain but was defeated by 52% to
 > 48% despite London, Scotland and Northern Ireland backing staying in.
 
@@ -46,8 +47,7 @@ David Cameron to quit after UK votes to leave EU
 > unstitching the UK from more than 40 years of EU law, deciding which
 > directives and regulations to keep, amend or ditch.
 
-Notes
------
+### Notes
 - The UK Independence Party (UKIP) is a Eurosceptic and right-wing
   populist political party in the United Kingdom. ([WP-UKIP][])
 - The European Union (EU) is a politico-economic union of 28 member
