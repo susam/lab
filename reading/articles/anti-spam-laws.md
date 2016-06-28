@@ -51,11 +51,12 @@ Dealing with spam emails
 
 ### Notes
 - The Information Technology Act, 2000 (also known as ITA-2000, or the IT Act)
-  is an Act of the Indian Parliament (No 21 of 2000) notified on 17 October
-  2000. It is the primary law in India dealing with cybercrime and electronic
-  commerce. It is based on the United Nations Model Law on Electronic Commerce
-  1996 (UNCITRAL Model) recommended by the General Assembly of United Nations
-  by a resolution dated 30 January 1997. ([WP-ITA-2000][])
+  is an Act of the Indian Parliament (No 21 of 2000) notified
+  on 17 October 2000. It is the primary law in India dealing with
+  cybercrime and electronic commerce. It is based on the United Nations
+  Model Law on Electronic Commerce 1996 (UNCITRAL Model) recommended by
+  the General Assembly of United Nations by a resolution dated 30
+  January 1997. ([WP-ITA-2000][])
 - On 19 November 2012, a 21-year-old girl was arrested from Palghar for posting
   a message on Facebook criticising the shutdown in Mumbai for the funeral of
   Bal Thackeray. Another 20-year-old girl was arrested for "liking" the post.
