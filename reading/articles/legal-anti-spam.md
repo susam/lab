@@ -3,7 +3,8 @@ Anti-Spam Laws
 
 Dealing with spam emails
 ------------------------
-2012-12-27: http://www.livemint.com/Consumer/Dk622OcXlcR4W7ai6vPzHI/DEALING-WITH-SPAM-EMAILS.html
+2012-12-27: Kian Ganz:
+http://www.livemint.com/Consumer/Dk622OcXlcR4W7ai6vPzHI/DEALING-WITH-SPAM-EMAILS.html
 
 ### Quotes
 > There is no law in India to regulate what companies can or cannot do
