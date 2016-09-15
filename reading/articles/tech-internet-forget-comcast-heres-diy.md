@@ -1,19 +1,17 @@
-Internet Peering
-================
-
-Forget Comcast. Here’s The DIY Approach to Internet Access.
------------------------------------------------------------
+Forget Comcast. Here's The DIY Approach to Internet Access.
+===========================================================
 2016-07-20: Dan Gillmor:
 https://backchannel.com/forget-comcast-heres-the-diy-approach-to-internet-access-ef1e37bc09e1
 
-### Quotes
+Quotes
+------
 > Spanish engineer Ramon Roca got tired of waiting for telecom companies to
 > wire his town -- so he did it himself.
 
 <!-- -->
 
-> So why do people like me eagerly journey to Gurb? Because it’s the birthplace
-> of [Guifi.net](https://guifi.net/), one of the world’s most important
+> So why do people like me eagerly journey to Gurb? Because it's the birthplace
+> of [Guifi.net](https://guifi.net/), one of the world's most important
 > experiments in telecommunications.
 
 <!-- -->
@@ -30,14 +28,14 @@ https://backchannel.com/forget-comcast-heres-the-diy-approach-to-internet-access
 
 <!-- -->
 
-> "What they’ve built is extraordinary," says Sascha Meinrath, an open Internet
+> "What they've built is extraordinary," says Sascha Meinrath, an open Internet
 > activist, professor of telecommunications at Penn State University, and
 > director of the telecom-focused think tank [X-LAB](http://thexlab.org/).
 
 <!-- -->
 
 > The first node went live in the early summer of 2004, when Roca turned on a
-> router with a directional antenna he’d installed at the top of a tall
+> router with a directional antenna he'd installed at the top of a tall
 > building near the local government headquarters.
 
 <!-- -->
@@ -71,7 +69,8 @@ https://backchannel.com/forget-comcast-heres-the-diy-approach-to-internet-access
 > fiber to a home or business is expensive, especially in rural areas,
 > requiring much higher up-front investments.
 
-### Notes
+Notes
+-----
 - Gurb (Catalan pronunciation: ['gurp]) is a municipality in the comarca of
   Osona in Catalonia, Spain. ([WP-GURB][])
 - Catalonia is an autonomous community of the Kingdom of Spain,
@@ -83,7 +82,7 @@ https://backchannel.com/forget-comcast-heres-the-diy-approach-to-internet-access
 - X-Lab drives digital equity through bold policy interventions, technology
   innovation, and the thoughtful study of upcoming risks. X-Lab is an
   innovative, future-focused initiative built to anticipate, develop and
-  respond to what’s next in tech policy. ([X-LAB][])
+  respond to what's next in tech policy. ([X-LAB][])
 
 [WP-GURB]: https://en.wikipedia.org/wiki/Gurb 
 [WP-CATALONIA]: https://en.wikipedia.org/wiki/Catalonia

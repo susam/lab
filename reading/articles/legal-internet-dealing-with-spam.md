@@ -1,12 +1,10 @@
-Anti-Spam Laws
-==============
-
 Dealing with spam emails
-------------------------
+========================
 2012-12-27: Kian Ganz:
 http://www.livemint.com/Consumer/Dk622OcXlcR4W7ai6vPzHI/DEALING-WITH-SPAM-EMAILS.html
 
-### Quotes
+Quotes
+------
 > There is no law in India to regulate what companies can or cannot do
 > with your personal data
 
@@ -50,7 +48,8 @@ http://www.livemint.com/Consumer/Dk622OcXlcR4W7ai6vPzHI/DEALING-WITH-SPAM-EMAILS
 > shutdown on Facebook. Well, if their messages were offensive, then it
 > might just be possible to argue that spam is, too.
 
-### Notes
+Notes
+-----
 - The Information Technology Act, 2000 (also known as ITA-2000, or the IT Act)
   is an Act of the Indian Parliament (No 21 of 2000) notified
   on 17 October 2000. It is the primary law in India dealing with
