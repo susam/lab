@@ -4,46 +4,46 @@ David Cameron to quit after UK votes to leave EU
 
 Quotes
 ------
-> The PM had urged the country to vote Remain but was defeated by 52% to
-> 48% despite London, Scotland and Northern Ireland backing staying in.
+The PM had urged the country to vote Remain but was defeated by 52% to
+48% despite London, Scotland and Northern Ireland backing staying in.
 
-<!-- -->
+---
 
-> UKIP leader Nigel Farage hailed it as the UK's "independence day",
-> while Boris Johnson said the result would not mean "pulling up the
-> drawbridge".
+UKIP leader Nigel Farage hailed it as the UK's "independence day",
+while Boris Johnson said the result would not mean "pulling up the
+drawbridge".
 
-<!-- -->
+---
 
-> But Boris Johnson, the ex-London mayor and public face of Vote Leave
-> who is now a front-runner to be next prime minister, said there was
-> "no need for haste" about severing the UK's ties. He said voters had
-> "searched in their hearts" and the UK now had a "glorious opportunity"
-> to pass its own laws, set its own taxes and control its own borders.
+But Boris Johnson, the ex-London mayor and public face of Vote Leave
+who is now a front-runner to be next prime minister, said there was
+"no need for haste" about severing the UK's ties. He said voters had
+"searched in their hearts" and the UK now had a "glorious opportunity"
+to pass its own laws, set its own taxes and control its own borders.
 
-<!-- -->
+---
 
-> Flanked by his wife Samantha, Mr Cameron announced shortly after 08:15
-> BST that he had informed the Queen of his decision to remain in place
-> for the short term and to then hand over to a new prime minister by
-> the time of the Conservative conference in October.
+Flanked by his wife Samantha, Mr Cameron announced shortly after 08:15
+BST that he had informed the Queen of his decision to remain in place
+for the short term and to then hand over to a new prime minister by
+the time of the Conservative conference in October.
 
-<!-- -->
+---
 
-> Britain is set to be the first country to leave the EU since its
-> formation - but the Leave vote does not immediately mean Britain
-> ceases to be a member of the 28-nation bloc.
+Britain is set to be the first country to leave the EU since its
+formation - but the Leave vote does not immediately mean Britain
+ceases to be a member of the 28-nation bloc.
 
-<!-- -->
+---
 
-> Once Article 50 has been triggered a country can not rejoin without
-> the consent of all member states.
+Once Article 50 has been triggered a country can not rejoin without
+the consent of all member states.
 
-<!-- -->
+---
 
-> In Whitehall and Westminster, there will now begin the massive task of
-> unstitching the UK from more than 40 years of EU law, deciding which
-> directives and regulations to keep, amend or ditch.
+In Whitehall and Westminster, there will now begin the massive task of
+unstitching the UK from more than 40 years of EU law, deciding which
+directives and regulations to keep, amend or ditch.
 
 Notes
 -----
