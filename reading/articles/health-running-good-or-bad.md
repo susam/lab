@@ -3,8 +3,8 @@ Is Running Good Or Bad For Your Health?
 2016-09-14: Marcelo Gleiser:
 http://www.npr.org/sections/13.7/2016/09/14/493803246/is-running-good-or-bad-for-your-health
 
-Quotes
-------
+Snippets
+--------
 A famous 2014 study led by [Duck-chul Lee][LEE] that followed 55,000
 adults for more than 15 years concluded that even modest amounts of
 running, around 50 minutes a week total, causes a 30 percent drop in

@@ -3,8 +3,8 @@ Forget Comcast. Here's The DIY Approach to Internet Access.
 2016-07-20: Dan Gillmor:
 https://backchannel.com/forget-comcast-heres-the-diy-approach-to-internet-access-ef1e37bc09e1
 
-Quotes
-------
+Snippets
+--------
 Spanish engineer Ramon Roca got tired of waiting for telecom companies to
 wire his town -- so he did it himself.
 

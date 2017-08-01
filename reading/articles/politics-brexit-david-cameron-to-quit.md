@@ -2,8 +2,8 @@ David Cameron to quit after UK votes to leave EU
 ================================================
 2016-06-24: BBC: http://www.bbc.com/news/uk-politics-36615028
 
-Quotes
-------
+Snippets
+--------
 The PM had urged the country to vote Remain but was defeated by 52% to
 48% despite London, Scotland and Northern Ireland backing staying in.
 

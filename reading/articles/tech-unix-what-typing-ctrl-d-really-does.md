@@ -3,7 +3,7 @@ What typing ^D really does on Unix
 2009-09-06: Chris Siebenmann:
 https://utcc.utoronto.ca/~cks/space/blog/unix/TypingEOFEffects
 
-Quotes
+Snippets
 ------
 Typing ^D causes the tty driver to immediately finish a `read()`.
 

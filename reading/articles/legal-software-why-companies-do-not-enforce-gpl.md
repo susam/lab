@@ -2,8 +2,8 @@ Why companies don't do GPL enforcement
 ======================================
 2017-09-08: LWN: Luis Villa: https://lwn.net/SubscriberLink/716168/2d0eafdc242e44de/
 
-Quotes
-------
+Snippets
+--------
 ### What question doesn't get asked? ###
 In [his recent talk at FOSDEM][FOSDEM], Richard Fontana spoke of using
 enforcement to encourage "collaboration" by "making a level playing

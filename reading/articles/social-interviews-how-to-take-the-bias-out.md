@@ -2,8 +2,8 @@ How to Take the Bias Out of Interviews
 ======================================
 2016-04-18: Iris Bohnet: https://hbr.org/2016/04/how-to-take-the-bias-out-of-interviews
 
-Quotes
-------
+Snippets
+--------
 When sociologist Lauren Rivera interviewed bankers, lawyers, and
 consultants, they [reported][RIVERA] that they commonly looked for someone like
 themselves in interviews.

@@ -3,8 +3,8 @@ Dealing with spam emails
 2012-12-27: Kian Ganz:
 http://www.livemint.com/Consumer/Dk622OcXlcR4W7ai6vPzHI/DEALING-WITH-SPAM-EMAILS.html
 
-Quotes
-------
+Snippets
+--------
 There is no law in India to regulate what companies can or cannot do
 with your personal data
 
@@ -18,7 +18,7 @@ with your personal data.
 ---
 
 HSA Advocates partner Salman Waris, who specializes in data protection
-laws—or the lack thereof in India—tells me, however, that some
+laws -- or the lack thereof in Indialls me, however, that some
 sections of the much maligned Information Technology (IT) Act could be
 helpful here.
 
@@ -32,14 +32,14 @@ But there is no specific law that would obligate them or would impose
 a penalty on companies that started sending out spam. Several drafts
 of full-fledged Indian data protection Acts have languished without
 ever passing into law, though of course significant progress has been
-made by the department of telecommunications with telephone “do not
-disturb” registers and SMS spam curbs.
+made by the department of telecommunications with telephone "do not
+disturb" registers and SMS spam curbs.
 
 ---
 
 For example, Waris posits that under Section 66A of the IT Act, if
 interpreted generously, there could be some action against ruthless
-email spammers who do not leave you alone with their clients’ sales
+email spammers who do not leave you alone with their clients' sales
 messages.
 
 Section 66A, of course, came into recent national infamy after the

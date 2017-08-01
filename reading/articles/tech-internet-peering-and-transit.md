@@ -2,12 +2,12 @@ How the 'Net works: an introduction to peering and transit
 ==========================================================
 2008-09-02: Rudolph van der Berg: http://arstechnica.com/features/2008/09/peering-and-transit/
 
-Quotes
-------
+Snippets
+--------
 In 2005, AT&T CEO Ed Whitacre famously told BusinessWeek, "What they
 [Google, Vonage, and others] would like to do is to use my pipes free.
-But I ain't going to let them do that…Why should they be allowed to use
-my pipes?"
+But I ain't going to let them do that... Why should they be allowed to
+use my pipes?"
 
 ---
 
