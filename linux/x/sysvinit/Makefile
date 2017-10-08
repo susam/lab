@@ -14,11 +14,11 @@ install:
 
 uninstall:
 	# Deregister service.
+	-service foo stop
 	if [ -e /etc/debian_version ]; then update-rc.d foo remove; fi
 	if [ -e /etc/redhat-release ]; then chkconfig --del foo; fi
 	# Remove user.
 	if [ -e /etc/debian_version ]; then deluser foo; fi
 	if [ -e /etc/redhat-release ]; then userdel foo; fi
 	# Uninstall scripts.
-	-service foo stop
 	rm -f /usr/local/bin/foo.py /etc/init.d/foo
