@@ -1,7 +1,7 @@
-An Example SysVInit Script
+An example sysvinit script
 ==========================
 This is a tiny example that sets up a Python 2 program named `foo.py` as
-service foo.
+a service.
 
 The `Makefile` contains two targets:
 
