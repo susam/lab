@@ -13,10 +13,12 @@ install:
 
 uninstall:
 	# Deregister service.
-	systemctl stop bar
-	systemctl disable bar
+	-systemctl stop bar
+	-systemctl disable bar
 	# Remove user.
-	if [ -e /etc/debian_version ]; then deluser bar; fi
-	if [ -e /etc/redhat-release ]; then userdel bar; fi
+	-if [ -e /etc/debian_version ]; then deluser bar; fi
+	-if [ -e /etc/redhat-release ]; then userdel bar; fi
 	# Uninstall scripts.
-	rm -f /usr/local/bin/bar.py /etc/systemd/system/bar.service
+	rm -f /usr/local/bin/bar.py
+	# Remove data files.
+	rm -rf /var/log/bar /var/run/bar.pid
