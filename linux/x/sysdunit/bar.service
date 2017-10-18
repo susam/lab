@@ -1,4 +1,5 @@
 [Service]
+User=bar
 ExecStart=/usr/local/bin/bar.py
 
 [Install]
