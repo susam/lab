@@ -1,5 +1,5 @@
 This directory contains examples I wrote while I was studying Node.js
-from [*The Node Beginner Book*](http://www.nodebeginner.org/),
+from [*The Node Beginner Book*](http://www.nodebeginner.org/), version
 2014-01-02 by Manuel Kiessling.
 
 The examples in this directory were run using node v4.2.1 downloaded
