@@ -2,3 +2,5 @@
 c/**/main
 c/**/*.so
 c/**/*.out
+java/**/*.jar
+java/**/*.class
