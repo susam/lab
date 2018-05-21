@@ -10,11 +10,11 @@ order of reading them.
 
   1. *The Node Beginner Book*, version 2014-01-02 by Manuel Kiessling
      ([node/the-node-beginner/](node/the-node-beginner/))
-  2. *The Little Go Book*, version 2014-10-21 by Karl Seguin
-     ([go/the-little-go-book/](go/the-little-go-book/))
-  3. *Beej's Guide to Network Programming*, version 3.0.21, 2016-06-08
+  2. *Beej's Guide to Network Programming*, version 3.0.21, 2016-06-08
      by Brian "Beej Jorgensen" Hall
      ([c/beej-guide-to-network-programming/](c/beej-guide-to-network-programming/))
-  4. *Beej's Guide to UNIX IPC*, version 1.1.3, 2015-12-01 by Brian
+  3. *Beej's Guide to UNIX IPC*, version 1.1.3, 2015-12-01 by Brian
      "Beej Jorgensen" Hall
      ([c/beej-guide-to-unix-ipc](c/beej-guide-to-unix-ipc))
+  4. *The Little Go Book*, version 2014-10-21 by Karl Seguin
+     ([go/the-little-go-book/](go/the-little-go-book/))
