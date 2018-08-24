@@ -1,0 +1,10 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{pgfplots}
+\begin{document}
+\definecolor{blue}{RGB}{31,119,180}
+\begin{tikzpicture}
+    \begin{axis}[xmin=0, xmax=4*pi, xlabel=x, ylabel=sin(x)]
+        \addplot[domain=0:4*pi, samples=100, blue, thick] {sin(deg(x))};
+    \end{axis}
+\end{tikzpicture}
+\end{document}

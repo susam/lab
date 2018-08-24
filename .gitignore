@@ -16,3 +16,12 @@ qux.*
 *.log
 *.out
 *.pdf
+
+# Ignore locally generated scripts.
+venv
+
+# Ignore macOS desktop services store files.
+.DS_Store
+
+# Ignore image files.
+*.png
