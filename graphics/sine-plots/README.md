@@ -37,7 +37,7 @@ Normal plot with LaTeX PGFPlots
 
 Source: [sine.tex](sine.tex)
 
-Image: [sine-py.tex][sine-py.tex]
+Image: [sine-tex.png][sine-tex.png]
 
 
 XKCD-style plot with LaTeX PGFPlots
