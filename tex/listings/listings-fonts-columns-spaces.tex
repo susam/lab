@@ -1,0 +1,552 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage{xcolor}
+\newcommand{\bs}{\textbackslash}
+\newcommand{\ttt}[1]{\colorbox[HTML]{f0f0f0}{\texttt{#1}}}
+\hypersetup{colorlinks, linkcolor=black}
+\geometry{top=0.75in, bottom=0.75in}
+\setcounter{tocdepth}{2}
+
+\title{Listings Experiments \\ Fonts, Columns, and Spaces}
+\author{Susam Pal}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+% Section: basicstyle
+\section{basicstyle}
+Teletype font set with \ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily\}}
+matches the font family of \ttt{verbatim} environment.
+
+\subsection{default (roman font, i.e., rmfamily)}
+
+{
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{rmfamily}
+\ttt{\bs{}lstset\{basicstyle=\bs{}rmfamily\}}
+
+{
+\lstset{basicstyle=\rmfamily}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{ttfamily}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily\}}
+
+{
+\lstset{basicstyle=\ttfamily}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{compare with verbatim}
+\begin{verbatim}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{verbatim}
+
+\pagebreak
+
+
+% Section: columns
+\section{columns}
+Full flexible columns set with
+\ttt{\bs{}lstset\{columns=fullflexible\}} least messes with the
+natural width and alignment of characters.
+
+\subsection{default (fixed columns)}
+{
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{fixed}
+\ttt{\bs{}lstset\{columns=fixed\}}
+
+{
+\lstset{columns=fixed}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{flexible}
+\ttt{\bs{}lstset\{columns=flexible\}}
+
+{
+\lstset{columns=flexible}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{spaceflexible}
+\ttt{\bs{}lstset\{columns=spaceflexible\}}
+
+{
+\lstset{columns=spaceflexible}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{fullflexible}
+\ttt{\bs{}lstset\{columns=fullflexible\}}
+
+{
+\lstset{columns=fullflexible}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+\pagebreak
+
+
+% Section: ttyfamily + columns
+\section{ttfamily + columns}
+Ignoring the dropped spaces, teletype font with flexible columns is
+pretty close to the output of \ttt{verbatim} environment. We fix the
+dropped spaces in the next section.
+
+\subsection{ttfamily only (fixed columns by default)}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily\}}
+
+{
+\lstset{basicstyle=\ttfamily}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{ttfamily + flexible}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=flexible\}}
+
+{
+\lstset{basicstyle=\ttfamily, columns=flexible}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{ttfamily + spaceflexible}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=spaceflexible\}}
+{
+\lstset{basicstyle=\ttfamily, columns=spaceflexible}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{ttfamily + fullflexible}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=fullflexible\}}
+
+{
+\lstset{basicstyle=\ttfamily, columns=fullflexible}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{compare with verbatim}
+\begin{verbatim}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{verbatim}
+\pagebreak
+
+
+% Section: ttyfamily + columns + keepspaces
+\section{ttfamily + columns + keepspaces}
+Teletype font with flexible columns and spaces intact matches the output
+of \ttt{verbatim}. The spaces are kept intact with
+\ttt{\bs{}lstset\{keepspaces=true\}}.
+
+\subsection{ttfamily + keepspaces only (fixed columns by default)}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, keepspaces=true\}}
+
+{
+\lstset{basicstyle=\ttfamily, keepspaces=true}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{ttfamily + flexible + keepspaces}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=flexible,
+                     keepspaces=true\}}
+
+{
+\lstset{basicstyle=\ttfamily, columns=flexible, keepspaces=true}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{ttfamily + spaceflexible + keepspaces}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=spaceflexible,
+                     keepspaces=true\}}
+{
+\lstset{basicstyle=\ttfamily, columns=spaceflexible, keepspaces=true}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{ttfamily + fullflexible + keepspaces}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=fullflexible,
+                     keepspaces=true\}}
+
+{
+\lstset{basicstyle=\ttfamily, columns=fullflexible, keepspaces=true}
+\begin{lstlisting}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{lstlisting}
+}
+
+\subsection{compare with verbatim}
+\begin{verbatim}
+0123456789
+OOOO  OOOO
+||||  ||||
+||||..||||
+OOOO..OOOO
+\end{verbatim}
+\pagebreak
+
+
+% Section: upquote
+\section{upquote}
+Quotes in code require special care because they are rendered as curved
+quotes by default. They are turned into straight quotes with
+\ttt{\bs{}lstset\{upquote=true\}}.
+
+Note that the \ttt{listings} package requires commands like
+\ttt{\bs{}textasciigrave} and \ttt{\bs{}textquotesingle} which are
+available in \ttt{textcomp} package, so it must be used while using this
+parameter.
+
+\subsection{default (roman font)}
+{
+\begin{lstlisting}
+'foo'
+"bar"
+`baz`
+\end{lstlisting}
+}
+
+\subsection{default (roman font) + upquote}
+\ttt{\bs{}lstset\{upquote=true\}}.
+
+{
+\lstset{upquote=true}
+\begin{lstlisting}
+'foo'
+"bar"
+`baz`
+\end{lstlisting}
+}
+
+\subsection{ttfamily}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttyfamily\}}.
+
+{
+\lstset{basicstyle=\ttfamily}
+\begin{lstlisting}
+'foo'
+"bar"
+`baz`
+\end{lstlisting}
+}
+
+\subsection{ttfamily + upquote}
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttyfamily, upquote=true\}}.
+
+{
+\lstset{basicstyle=\ttfamily, upquote=true}
+\begin{lstlisting}
+'foo'
+"bar"
+`baz`
+\end{lstlisting}
+}
+
+\pagebreak
+
+
+% Section: language + blank spaces
+\section{language + showstringspaces=false}
+Activating language syntax detection leads to visible spaces in strings
+(displayed as open box characters). They can be made invisible (blank)
+again with \ttt{\bs{}lstset\{showstringspaces=false\}}.
+
+\subsection{ttfamily + fullflexible + keepspaces only}
+{
+\small
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=fullflexible,
+                     keepspaces=true\}}
+}
+
+{
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world\n");
+    return 0;
+}
+\end{lstlisting}
+}
+
+\subsection{ttfamily + fullflexible + keepspaces + language}
+{
+\small
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=fullflexible,
+                     keepspaces=true, language=c\}}
+}
+
+{
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    language=c,
+}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world\n");
+    return 0;
+}
+\end{lstlisting}
+}
+
+\subsection{ttfamily + fullflexible + keepspaces + language +
+            showstringspaces=false}
+{
+\small
+\ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, columns=fullflexible,
+                     keepspaces=true, language=c, showstringspaces=false\}}
+}
+
+{
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    language=c,
+    showstringspaces=false,
+}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world\n");
+    return 0;
+}
+\end{lstlisting}
+}
+
+\subsection{compare with verbatim}
+\begin{verbatim}
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world\n");
+    return 0;
+}
+\end{verbatim}
+
+
+% Section: minimal recommended parameters
+\section{minimal recommended parameters}
+This section contains examples of minimal set of recommended parameters
+while using the \ttt{listings} package to render code with or without
+syntax highlighting.
+
+\subsection{no syntax highlighting}
+{
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    backgroundcolor=\color[HTML]{f0f0f0},
+}
+\begin{lstlisting}
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true
+}
+\end{lstlisting}
+}
+{
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true
+}
+\begin{lstlisting}
+/* hello, world program */
+
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world");
+    putchar('\n');
+    return 0;
+}
+\end{lstlisting}
+}
+
+\subsection{syntax highlighting}
+{
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    backgroundcolor=\color[HTML]{f0f0f0},
+}
+\begin{lstlisting}
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    language=c,
+    showstringspaces=false,
+    commentstyle=\color{darkgray},
+    directivestyle=\color{teal},
+    keywordstyle=\color{blue},
+    identifierstyle=\color{violet},
+    stringstyle=\color{magenta}
+}
+\end{lstlisting}
+}
+{
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    language=c,
+    showstringspaces=false,
+    commentstyle=\color{darkgray},
+    directivestyle=\color{teal},
+    keywordstyle=\color{blue},
+    identifierstyle=\color{violet},
+    stringstyle=\color{magenta}
+}
+\begin{lstlisting}
+/* hello, world program */
+
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world");
+    putchar('\n');
+    return 0;
+}
+\end{lstlisting}
+}
+
+\end{document}

@@ -15,6 +15,7 @@ qux.*
 *.aux
 *.log
 *.out
+*.toc
 *.pdf
 
 # Ignore locally generated scripts.
