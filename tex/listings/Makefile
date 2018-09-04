@@ -1,6 +1,6 @@
-FILENAME=listings-fonts-columns-spaces
+FILENAME=lst-min-params
 
-all: pdf view filebin
+all: pdf view blob
 
 pdf:
 	pdflatex "$(FILENAME).tex"
@@ -8,16 +8,20 @@ pdf:
 
 view:
 	if command -v xdg-open > /dev/null; then \
-		xdg-open "$(FILENAME).pdf"; \
+	    xdg-open "$(FILENAME).pdf"; \
 	elif command -v open > /dev/null; then \
-		open "$(FILENAME).pdf"; \
+	    open "$(FILENAME).pdf"; \
 	else \
-		echo Cannot find xdg-open or open.; \
+	    echo Cannot find xdg-open or open.; \
 	fi
 
-clean:
-	rm -rf *.log *.aux *.pdf *.toc
+clear:
+	rm -f *.pdf
 
-filebin:
-	mkdir -p ~/"git/filebin/pdf/$$(basename "$$PWD")"
-	cp "$(FILENAME).pdf" ~/"git/filebin/pdf/$$(basename "$$PWD")"
+clean:
+	rm -f *.log *.aux *.pdf *.toc
+
+DEST = ../../../blob/pdf/listings
+blob:
+	mkdir -p "$(DEST)"
+	cp "$(FILENAME).pdf" "$(DEST)"

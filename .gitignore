@@ -18,8 +18,10 @@ qux.*
 *.toc
 *.pdf
 
-# Ignore locally generated scripts.
-venv
+# Ignore locally generated directories and files.
+venv/
+texmf/
+e
 
 # Ignore macOS desktop services store files.
 .DS_Store

@@ -1,5 +1,7 @@
-Listings Experiments: Fonts, Columns, and Spaces
-================================================
+Listings Minimal Parameters
+===========================
+[[TEX]] [[PDF]]
+
 This directory contains LaTeX source code with a set of experiments that
 demonstrate why the following parameters to `\lstset` command is
 necessary while typesetting code listings with the `listings` package:
@@ -56,8 +58,8 @@ producing good quality syntax highlighted code listing:
 
 See the source and document below for actual code and output:
 
-  - Source: [listings-fonts-columns-spaces.tex][SRC]
-  - Output: [listings-fonts-columns-spaces.pdf][PDF]
+  - Source: [[TEX]]
+  - Output: [[PDF]]
 
-[SRC]: listings-fonts-columns-spaces.tex
-[PDF]: https://mycask.github.io/filebin/pdf/listings/listings-fonts-columns-spaces.pdf
+[TEX]: lst-min-params.tex
+[PDF]: https://susam.github.io/blob/pdf/listings/lst-min-params.pdf

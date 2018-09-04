@@ -49,7 +49,7 @@ Source: [xkcd-sine.tex](xkcd-sine.tex)
 Image: [xkcd-sine-tex.png][xkcd-sine-tex.png]
 
 
-[sine-py.png]: https://mycask.github.io/filebin/img/sine-plots/sine-py.png
-[xkcd-sine-py.png]: https://mycask.github.io/filebin/img/sine-plots/xkcd-sine-py.png
-[sine-tex.png]: https://mycask.github.io/filebin/img/sine-plots/sine-tex.png
-[xkcd-sine-tex.png]: https://mycask.github.io/filebin/img/sine-plots/xkcd-sine-tex.png
+[sine-py.png]: https://susam.github.io/blob/img/sine-plots/sine-py.png
+[xkcd-sine-py.png]: https://susam.github.io/blob/img/sine-plots/xkcd-sine-py.png
+[sine-tex.png]: https://susam.github.io/blob/img/sine-plots/sine-tex.png
+[xkcd-sine-tex.png]: https://susam.github.io/blob/img/sine-plots/xkcd-sine-tex.png

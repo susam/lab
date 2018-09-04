@@ -21,7 +21,7 @@
 
 % Section: basicstyle
 \section{basicstyle}
-Teletype font set with \ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily\}}
+Teletype font set with \ttt{basicstyle=\bs{}ttfamily}
 matches the font family of \ttt{verbatim} environment.
 
 \subsection{default (roman font, i.e., rmfamily)}
@@ -78,9 +78,8 @@ OOOO..OOOO
 
 % Section: columns
 \section{columns}
-Full flexible columns set with
-\ttt{\bs{}lstset\{columns=fullflexible\}} least messes with the
-natural width and alignment of characters.
+Full flexible columns set with \ttt{columns=fullflexible} least disturb
+the natural width and alignment of characters.
 
 \subsection{default (fixed columns)}
 {
@@ -226,8 +225,7 @@ OOOO..OOOO
 % Section: ttyfamily + columns + keepspaces
 \section{ttfamily + columns + keepspaces}
 Teletype font with flexible columns and spaces intact matches the output
-of \ttt{verbatim}. The spaces are kept intact with
-\ttt{\bs{}lstset\{keepspaces=true\}}.
+of \ttt{verbatim}. The spaces are kept intact with \ttt{keepspaces=true}.
 
 \subsection{ttfamily + keepspaces only (fixed columns by default)}
 \ttt{\bs{}lstset\{basicstyle=\bs{}ttfamily, keepspaces=true\}}
@@ -302,7 +300,7 @@ OOOO..OOOO
 \section{upquote}
 Quotes in code require special care because they are rendered as curved
 quotes by default. They are turned into straight quotes with
-\ttt{\bs{}lstset\{upquote=true\}}.
+\ttt{upquote=true}.
 
 Note that the \ttt{listings} package requires commands like
 \ttt{\bs{}textasciigrave} and \ttt{\bs{}textquotesingle} which are
@@ -361,7 +359,7 @@ parameter.
 \section{language + showstringspaces=false}
 Activating language syntax detection leads to visible spaces in strings
 (displayed as open box characters). They can be made invisible (blank)
-again with \ttt{\bs{}lstset\{showstringspaces=false\}}.
+again with \ttt{showstringspaces=false}.
 
 \subsection{ttfamily + fullflexible + keepspaces only}
 {
@@ -451,11 +449,11 @@ int main()
 \end{verbatim}
 
 
-% Section: minimal recommended parameters
-\section{minimal recommended parameters}
-This section contains examples of minimal set of recommended parameters
-while using the \ttt{listings} package to render code with or without
-syntax highlighting.
+% Section: minimal parameters
+\section{minimal parameters}
+This section contains examples of minimal set of useful parameters while
+using the \ttt{listings} package to render code with or without syntax
+highlighting.
 
 \subsection{no syntax highlighting}
 {
