@@ -3,8 +3,8 @@ Listings Minimal Parameters
 [[TEX]] [[PDF]]
 
 This directory contains LaTeX source code with a set of experiments that
-demonstrate why the following parameters to `\lstset` command is
-necessary while typesetting code listings with the `listings` package:
+demonstrate why the following parameters are necessary while typesetting
+code listings with the `listings` package:
 
     \lstset{
         basicstyle=\ttfamily,
@@ -22,8 +22,8 @@ following parameter is necessary:
         upquote=true
     }
 
-Additionally, it demonstrates that the following parameters are
-necessary when the `language` parameter is used:
+Additionally, the experiments demonstrate that the following parameter
+is necessary when the `language` parameter is used:
 
     \lstset{
         showstringspaces=false
@@ -40,7 +40,7 @@ producing good quality code listing without syntax highlighting:
     }
 
 Here is an example of a minimal set of parameters necessary for
-producing good quality syntax highlighted code listing:
+producing good quality code listing with syntax highlighting:
 
     \lstset{
         basicstyle=\ttfamily,
