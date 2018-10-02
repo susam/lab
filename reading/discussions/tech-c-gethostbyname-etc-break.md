@@ -2,8 +2,6 @@ gethostbyname() etc break with both ::1 and 127.0.0.1 local entries
 ===================================================================
 2007-08-29: https://sourceware.org/bugzilla/show_bug.cgi?id=4980
 
-Quotes
-------
 **Petr Baudis 2007-08-29**
 
 On Nov 20 a change in nss/nss_files/files-hosts.c:LINE_PARSER was
@@ -118,7 +116,7 @@ test case for IN6_IS_ADDR_V4COMPAT
 This does not appear to violate any RFCs.
 
 Howard Chu claims that this behavior violates RFC 2553.  First of all,
-"IPv4-compatible addresses" have been deprecated by RFC 4291, section 2.5.5.1. 
+"IPv4-compatible addresses" have been deprecated by RFC 4291, section 2.5.5.1.
 Even if it had not been, this is an incorrect assumption.  "IPv4-compatible
 addresses" would have implied that you could send an IPv6 packet over the wire
 addressed to, say ::209.132.176.174, and a router would then encapsulate it in
@@ -129,7 +127,7 @@ IPv6-space.  But I digress.
 What RFC 2553 means by 'IPv6 hex addresses "::" and "::1" MUST NOT be treated
 as IPv4-compatible addresses' is that a router may not encapsulate ::1 in an
 IPv4 packet to 0.0.0.1.  This behavior does not happen, because a host will
-drop packets to ::1 if it did not come through the "lo" loopback interface. 
+drop packets to ::1 if it did not come through the "lo" loopback interface.
 Even if this were to happen, it would be beyond the scope of libc; it would be
 a kernel IP stack issue instead.
 
@@ -161,22 +159,25 @@ For the record, I tested this against glibc 2.7 on Ubuntu hardy.
 [ATTACHMENT2]: https://sourceware.org/bugzilla/attachment.cgi?id=2816
 [DETAILS2]: https://sourceware.org/bugzilla/attachment.cgi?id=2816&action=edit
 
-Notes
------
+
+---
+
+*Notes:*
+
 - In September 1995 Ulrich Drepper made his first contribution to the
   glibc project and gradually became over the 1990s the core contributor
-  and maintainer of glibc.[5] Drepper held the maintainership position
-  for many years and accumulated until 2012 63% of all commits of the
-  project. ([WP-GLIBC][])
+  and maintainer of glibc. Drepper held the maintainership position for
+  many years and accumulated until 2012 63% of all commits of the
+  project.
 - Starting in 2001 the library's development had been overseen by a
   committee, with Ulrich Drepper kept as the lead contributor and
   maintainer. The steering committee installation was surrounded by a
   public controversy as it was openly described by Ulrich Drepper as
-  failed hostile takeover maneuver by RMS. ([WP-GLIBC][])
+  failed hostile takeover maneuver by RMS.
 - In March 2012, the steering committee voted to disband itself and
   remove Drepper in favor of a community-driven development process,
   with Ryan Arnold, Maxim Kuvyrkov, Joseph Myers, Carlos O'Donell, and
   Alexandre Oliva holding the responsibility of GNU maintainership (but
-  no extra decision-making power). ([WP-GLIBC][])
+  no extra decision-making power).
 
-[WP-GLIBC]: https://en.wikipedia.org/wiki/GNU_C_Library
+Source: https://en.wikipedia.org/wiki/GNU_C_Library
