@@ -1,6 +1,10 @@
 # Ignore Vim swap files.
 *.sw?
 
+# Ignore Python generated files.
+__pycache__/
+*.pyc
+
 # Ignore Java generated files.
 *.class
 *.jar
@@ -19,9 +23,8 @@ qux.*
 *.pdf
 
 # Ignore locally generated directories and files.
-venv/
+venv
 texmf/
-e
 
 # Ignore macOS desktop services store files.
 .DS_Store
