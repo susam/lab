@@ -27,5 +27,6 @@ FORCE:
 
 deletion_distance \
 merging_packages \
+shifted_array_search \
 :
 	python3 -m unittest -vf test/test_$@*.py
