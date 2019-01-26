@@ -21,7 +21,7 @@ clear:
 clean:
 	rm -f *.log *.aux *.pdf *.toc
 
-DEST = ../../../blob/pdf/listings
+DEST = ../../../blob/lab/tex/lst-min-params
 blob:
 	mkdir -p "$(DEST)"
 	cp "$(FILENAME).pdf" "$(DEST)"

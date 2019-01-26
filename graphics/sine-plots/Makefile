@@ -1,10 +1,10 @@
 all: output convert blob
 
 output:
-	. ./e && python3 sine.py
-	. ./e && python3 xkcd-sine.py
-	. ./e && pdflatex sine.tex
-	. ./e && xelatex xkcd-sine.tex
+	. ./venv && python3 sine.py
+	. ./venv && python3 xkcd-sine.py
+	. ./texenv && pdflatex sine.tex
+	. ./texenv && xelatex xkcd-sine.tex
 
 convert:
 	gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m \
@@ -14,7 +14,7 @@ convert:
 	   -r300 -dGraphicsAlphaBits=4 -dTextAlphaBits=4 \
 	   -sOutputFile=xkcd-sine-tex.png xkcd-sine.pdf
 
-DEST = ../../../blob/img/sine-plots
+DEST = ../../../blob/lab/graphics/sine-plots
 blob:
 	mkdir -p "$(DEST)"
 	cp sine-py.png "$(DEST)"
@@ -24,17 +24,17 @@ blob:
 
 deps:
 	# LaTeX user tree.
-	echo export TEXMFHOME=texmf > e
+	echo export TEXMFHOME=texmf > texenv
 	if [ ! -e texmf/tlpkg/texlive.tlpdb ]; then \
-	. ./e && tlmgr init-usertree; fi
-	. ./e && tlmgr --usermode install standalone pgfplots
+	. ./texenv && tlmgr init-usertree; fi
+	. ./texenv && tlmgr --usermode install standalone pgfplots
 	# Python virtual environment.
-	python3 -m venv venv
-	echo . venv/bin/activate >> e
-	. ./e && pip install matplotlib
+	python3 -m venv ~/.venv/sine-plots
+	echo . ~/.venv/sine-plots/bin/activate >> venv
+	. ./venv && pip install matplotlib
 
 rmdeps:
-	rm -rf texmf venv
+	rm -rf texmf ~/.venv/sine-plots
 
 clear:
 	rm -f *.png *.pdf

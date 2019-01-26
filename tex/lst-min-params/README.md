@@ -62,4 +62,4 @@ See the source and document below for actual code and output:
   - Output: [[PDF]]
 
 [TEX]: lst-min-params.tex
-[PDF]: https://susam.github.io/blob/pdf/listings/lst-min-params.pdf
+[PDF]: https://susam.github.io/blob/lab/tex/lst-min-params/lst-min-params.pdf

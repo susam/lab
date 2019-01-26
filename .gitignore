@@ -28,6 +28,7 @@ qux.*
 
 # Local files generated for development purpose.
 venv
+texenv
 texmf/
 
 # macOS desktop services store files.
