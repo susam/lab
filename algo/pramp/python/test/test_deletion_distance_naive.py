@@ -1,5 +1,6 @@
 import unittest
-from DeletionDistanceNaive import deletion_distance
+
+from deletion_distance_naive import deletion_distance
 
 
 class DeletionDistanceNaiveTest(unittest.TestCase):

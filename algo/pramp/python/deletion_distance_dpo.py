@@ -7,6 +7,7 @@
 
 # Complexity: O(mn) time. O(min(m, n)) space.
 
+
 def deletion_distance(a, b):
     m, n = len(a), len(b)
 
@@ -15,21 +16,21 @@ def deletion_distance(a, b):
         a, b = b, a
         m, n = n, m
 
-    prevMemo = [0] * (n + 1)
+    prev_memo = [0] * (n + 1)
 
     for i in range(m + 1):
-        currMemo = [0] * (n + 1)
+        curr_memo = [0] * (n + 1)
 
         for j in range(n + 1):
             if i == 0:
-                currMemo[j] = j
+                curr_memo[j] = j
             elif j == 0:
-                currMemo[j] = i
+                curr_memo[j] = i
             elif a[i - 1] == b[j - 1]:
-                currMemo[j] = prevMemo[j - 1]
+                curr_memo[j] = prev_memo[j - 1]
             else:
-                currMemo[j] = 1 + min(prevMemo[j], currMemo[j - 1])
+                curr_memo[j] = 1 + min(prev_memo[j], curr_memo[j - 1])
 
-        prevMemo = currMemo
+        prev_memo = curr_memo
 
-    return currMemo[n]
+    return curr_memo[n]

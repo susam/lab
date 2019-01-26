@@ -5,11 +5,12 @@
 
 # Complexity: O(2^n) time. O(n) space.
 
+
 def deletion_distance(a, b):
-    return deletionDistance(a, b, len(a), len(b))
+    return _deletion_distance(a, b, len(a), len(b))
 
 
-def deletionDistance(a, b, m, n):
+def _deletion_distance(a, b, m, n):
     if m == 0:
         return n
 
@@ -17,7 +18,7 @@ def deletionDistance(a, b, m, n):
         return m
 
     if a[m - 1] == b[n - 1]:
-        return deletionDistance(a, b, m - 1, n - 1)
+        return _deletion_distance(a, b, m - 1, n - 1)
 
-    return 1 + min(deletionDistance(a, b, m - 1, n),
-                   deletionDistance(a, b, m, n - 1))
+    return 1 + min(_deletion_distance(a, b, m - 1, n),
+                   _deletion_distance(a, b, m, n - 1))
