@@ -1,0 +1,64 @@
+\input{preamble.tex}
+\title{Periodic Functions with Sum as Identity Function}
+\created{30 Jan 2019}
+\input{begin.tex}
+\section*{Problem}
+Find two periodic functions \( f \) and \( g \) from \( \mathbb{R} \)
+to \( \mathbb{R} \) such that their sum \( f + g \) is the identity
+function. The axiom of choice is allowed.
+
+A function \( f \) is periodic if there exists \( p > 0 \) such that
+\( f(x + p) = f(x) \) for all \( x \) in the domain.
+
+\section*{Solution}
+The axiom of choice is equivalent to the statement that every vector
+space has a basis. Since the set of real numbers \( \mathbb{R} \) is a
+vector space over the set of rational numbers \( \mathbb{Q} \), there
+must be a basis \( \mathcal{H} \subseteq \mathbb{R} \) such that every
+real number \( x \) can be written uniquely as a finite linear
+combination of elements of \( \mathcal{H} \) with rational coefficients,
+i.e.,
+
+\[
+    x = \sum_{a \in \mathcal{H}} x_a a
+\]
+
+where each \( x_a \in \mathbb{Q} \) and \( \{ a \in \mathcal{H} \mid x_a
+\ne 0 \} \) is finite. The set \( \mathcal{H} \) is also known as the
+Hamel basis.
+
+We know that \( b_a = 0 \) for distinct \( a, b \in \mathcal{H} \)
+because \( a \) and \( b \) are basis vectors. In the above expansion of
+\( x \), each \( x_a \) is a rational number that appears as the
+coefficient of the basis vector \( a \). Therefore \( (x + y)_{a} = x_a
++ y_a \) for all \( x, y \in R \). Thus \( (x + b)_{a} = x_a + b_a = x_a
++ 0 = x_a \). This shows that a function \( f(x) = x_a \) is a periodic
+function with period \( b \) for any \( b \in \mathcal{H} \setminus
+\{a\} \).
+
+Let us define two functions:
+\[
+    f(x) = \sum_{a \in \mathcal{H} \setminus \{ b \}} x_a a,
+    \hspace{1em}
+    g(x) = x_b b.
+\]
+
+where \( b \in \mathcal{H} \) and \( x \in \mathbb{R} \). Let us
+choose \( c \in \mathcal{H} \) such that \( c \ne b \). Then \( f(x) \)
+is a periodic function with period \( b \) and \( g(x) \) is a periodic
+function with period \( c \). Further,
+
+\[
+f(x) + g(x)
+= \left( \sum_{a \in \mathcal{H} \setminus \{ b \}} x_a a \right) + x_b b
+= \sum_{a \in \mathcal{H}} x_a a
+= x.
+\]
+
+Thus \( f(x) \) and \( g(x) \) are two periodic functions such that
+their sum is the identity function.
+
+\nocite{pfml-periodic-functions}
+\nocite{radcliffe-periodic-functions}
+\nocite{youcis-dim-r-q}
+\input{end.tex}

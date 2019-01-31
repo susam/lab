@@ -25,6 +25,10 @@ qux.*
 *.out
 *.toc
 *.pdf
+*.bbl
+*.bcf
+*.blg
+*.xml
 
 # Local files generated for development purpose.
 venv

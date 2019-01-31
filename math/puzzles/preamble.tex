@@ -1,0 +1,29 @@
+\documentclass{article}
+
+% Set paper size and margins.
+\usepackage[a4paper]{geometry}
+
+% Do not indent paragraphs and inert blank space between them.
+\usepackage{parskip}
+
+% For \mathbb etc.
+\usepackage{amssymb}
+
+% For \eqref etc.
+\usepackage{amsmath}
+
+% Link colors.
+\usepackage[colorlinks,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+% To generate references.
+\usepackage{biblatex}
+
+% Bibliography file.
+\addbibresource{ref.bib}
+
+% Do not display date.
+\newcommand{\created}[1]{\newcommand{\createdate}{#1}}
+\newcommand{\updated}[1]{\newcommand{\updatedate}{#1}}
+
+% Set author.
+\author{Susam Pal}
