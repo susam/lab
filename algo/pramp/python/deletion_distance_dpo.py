@@ -2,7 +2,7 @@
 # get the same string.
 
 # This solution optimizes the space complexity of the solution in
-# DeletionDistanceDPO.py by keeping only those memo values that are
+# DeletionDistanceDP.py by keeping only those memo values that are
 # required in each iteration and discarding unneeded memo values.
 
 # Complexity: O(mn) time. O(min(m, n)) space.
