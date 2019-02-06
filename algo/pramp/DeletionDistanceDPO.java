@@ -7,8 +7,7 @@
 
 // Complexity: O(mn) time. O(min(m, n)) space.
 
-class DeletionDistanceDPO {
-    // Solution
+class Solution {
     static int deletionDistance(String a, String b) {
         int m = a.length();
         int n = b.length();
@@ -45,21 +44,9 @@ class DeletionDistanceDPO {
 
         return currMemo[n];
     }
+}
 
-    // Tests
-    static void test(String a, String b, int expected) {
-        int output = deletionDistance(a, b);
-        System.out.printf("Input:    \"%s\", \"%s\"\n", a, b);
-        System.out.printf("Output:   %d\n", output);
-        System.out.printf("Expected: %d\n", expected);
-        System.out.println("-----");
-
-        if (output != expected) {
-            System.out.println("TEST FAILURE!");
-            System.exit(1);
-        }
-    }
-
+class Test {
     public static void main(String[] args) {
         test("heat", "hit", 3);
         test("dog", "frog", 3);
@@ -70,5 +57,20 @@ class DeletionDistanceDPO {
         test("hit", "", 3);
         test("", "hit", 3);
         test("", "", 0);
+    }
+
+    private static void test(String a, String b, int expected) {
+        System.out.printf("Input:    \"%s\", \"%s\"\n", a, b);
+
+        int output = Solution.deletionDistance(a, b);
+
+        System.out.printf("Output:   %d\n", output);
+        System.out.printf("Expected: %d\n", expected);
+        System.out.println("-----");
+
+        if (output != expected) {
+            System.out.println("TEST FAILURE!");
+            System.exit(1);
+        }
     }
 }

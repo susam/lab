@@ -19,3 +19,29 @@ def get_indices_of_item_wights(a, limit):
             return [index, complement_index]
 
     return []
+
+
+def main():
+    test([9], 9, [])
+    test([4, 4], 8, [1, 0])
+    test([5, 4], 8, [])
+    test([4, 4, 1], 5, [2, 1])
+    test([4, 6, 10, 15, 16], 21, [3, 1])
+
+
+def test(a, b, expected):
+    print('Input:    {}, {}'.format(a, b))
+
+    output = get_indices_of_item_wights(a, b)
+
+    print('Output:   {}'.format(output))
+    print('Expected: {}'.format(expected))
+    print('-----')
+
+    if output != expected:
+        import sys
+        sys.exit('TEST FAILURE!')
+
+
+if __name__ == '__main__':
+    main()

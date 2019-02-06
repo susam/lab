@@ -34,3 +34,33 @@ def deletion_distance(a, b):
         prev_memo = curr_memo
 
     return curr_memo[n]
+
+
+def main():
+    test('heat', 'hit', 3)
+    test('dog', 'frog', 3);
+    test('hot', 'plot', 3);
+    test('ab', 'ba', 2);
+    test('some', 'some', 0);
+    test('some', 'thing', 9);
+    test('hit', '', 3);
+    test('', 'hit', 3);
+    test('', '', 0);
+
+
+def test(a, b, expected):
+    print('Input:    {}, {}'.format(a, b))
+
+    output = deletion_distance(a, b)
+
+    print('Output:   {}'.format(output))
+    print('Expected: {}'.format(expected))
+    print('-----')
+
+    if output != expected:
+        import sys
+        sys.exit('TEST FAILURE!')
+
+
+if __name__ == '__main__':
+    main()
