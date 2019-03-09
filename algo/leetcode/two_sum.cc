@@ -38,14 +38,14 @@ public:
 std::string vector_to_str(const std::vector<int>& v)
 {
     std::ostringstream oss;
-    oss << "{";
+    oss << '{';
     if (v.size() > 0) {
         oss << v[0];
     }
     for (std::size_t i = 1; i < v.size(); i++) {
         oss << ", " << v[i];
     }
-    oss << "}";
+    oss << '}';
     return oss.str();
 }
 
