@@ -1,11 +1,14 @@
 # Compile most recently modified solution TeX file and view output PDF.
 last:
 	make view \
-	FILE="$$(ls -t *.tex | grep -vE "^(preamble|begin|end)\.tex$$" | head -n 1)"
+	     FILE="$$(ls -t *.tex | \
+	              grep -vE "^(preamble|begin|end)\.tex$$" | \
+		      head -n 1)"
 
 # Compile specified TeX file and view output PDF.
-*.tex: FORCE
+*.tex: clean
 	make view FILE="$@"
+	make clean
 
 # Compile all solution TeX files to PDFs.
 all:
@@ -45,5 +48,3 @@ DEST = ../../../blob/lab/math/puzzles
 blob:
 	mkdir -p "$(DEST)"
 	cp "$(FILE)" "$(DEST)"
-
-FORCE:
