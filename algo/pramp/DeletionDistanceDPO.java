@@ -27,7 +27,6 @@ class Solution {
         int[] currMemo = new int[n + 1];
 
         for (int i = 0; i <= m; i++) {
-            currMemo = new int[n + 1];
             for (int j = 0; j <= n; j++) {
                 if (i == 0)
                     currMemo[j] = j;
@@ -39,7 +38,8 @@ class Solution {
                     currMemo[j] = 1 + Math.min(prevMemo[j], currMemo[j - 1]);
             }
 
-            prevMemo = currMemo;
+            // Copy current memo into previous memo.
+            System.arraycopy(currMemo, 0, prevMemo, 0, n + 1);
         }
 
         return currMemo[n];
