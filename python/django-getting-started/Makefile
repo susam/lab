@@ -108,7 +108,90 @@ create-05-views-urls: clean
 	@echo Press ENTER to run server.; read
 	. ./venv && cd 05-views-urls && python3 manage.py runserver
 
-# App with 
+# Combination of project's path(route, include()) and app's path(route, view).
+create-06-path-include: clean
+	@echo
+	@echo Press ENTER to remove and create project again.
+	@echo Press Ctrl + C to abort.; read
+	@echo
+	rm -rf 06-path-include
+	. ./venv && django-admin startproject foo
+	mv foo 06-path-include
+	. ./venv && cd 06-path-include && python3 manage.py startapp bar
+
+06-path-include: clean
+	if [ ! -d "$@" ]; then make create-"$@"; fi
+	. ./venv && \
+	    cd 06-path-include && \
+	    python3 manage.py runserver 2> /dev/null &
+	sleep 2
+	#
+	# ----------------------------------------------------------------
+	# 'bar/' and 'view1'   match 'bar/view1'           => HTTP 200
+	# 'bar/' and 'view2/'  match 'bar/view2/'          => HTTP 200
+	# 'bar/' and '//view3' match 'bar//view3'          => HTTP 200
+	# 'bar/' and 'view1'   does not match 'bar/view1/' => HTTP 404
+	# 'bar/' and 'view2/'  does not match 'bar/view2'  => HTTP 301
+	# 'bar/' and '/view3'  does not match 'bar/view3'  => HTTP 404
+	# ----------------------------------------------------------------
+	curl -sI http://localhost:8000/bar/view1  | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/bar/view2/ | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/bar//view3 | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/bar/view1/ | head -n 1  # HTTP 404
+	curl -sI http://localhost:8000/bar/view2  | head -n 1  # HTTP 301
+	curl -sI http://localhost:8000/bar/view3  | head -n 1  # HTTP 404
+	#
+	# ----------------------------------------------------------------
+	# path('bar/', include('bar.urls')) behaves the same as
+	# path('baz/', include(bar.urls)).
+	# ----------------------------------------------------------------
+	curl -sI http://localhost:8000/baz/view1  | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/baz/view2/ | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/baz//view3 | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/baz/view1/ | head -n 1  # HTTP 404
+	curl -sI http://localhost:8000/baz/view2  | head -n 1  # HTTP 301
+	curl -sI http://localhost:8000/baz/view3  | head -n 1  # HTTP 404
+	#
+	# ----------------------------------------------------------------
+	# 'qux' and 'view1'  match 'quxview1'            => HTTP 200
+	# 'qux' and 'view2/' match 'quxview2/'           => HTTP 200
+	# 'qux' and '/view3' match 'qux/view3'           => HTTP 200
+	# 'qux' and 'view1'  does not match 'qux/view1'  => HTTP 404
+	# 'qux' and 'view2/' does not match 'qux/view2/' => HTTP 404
+	# 'qux' and '/view3' does not match 'quxview3'   => HTTP 404
+	# ----------------------------------------------------------------
+	curl -sI http://localhost:8000/quxview1   | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/quxview2/  | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/qux/view3  | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/qux/view1  | head -n 1  # HTTP 404
+	curl -sI http://localhost:8000/qux/view2/ | head -n 1  # HTTP 404
+	curl -sI http://localhost:8000/quxview3   | head -n 1  # HTTP 404
+	#
+	# ----------------------------------------------------------------
+	# 'quux'  matches 'quux'         => HTTP 200
+	# 'quuz/' matches 'quuz/'        => HTTP 200
+	# 'quux' does not match 'quux/'  => HTTP 404
+	# 'quuz/' does not match 'quuz'  => HTTP 301
+	# ----------------------------------------------------------------
+	curl -sI http://localhost:8000/quux  | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/quuz/ | head -n 1  # HTTP 200
+	curl -sI http://localhost:8000/quux/ | head -n 1  # HTTP 404
+	curl -sI http://localhost:8000/quuz  | head -n 1  # HTTP 301
+	#
+	# ----------------------------------------------------------------
+	# 'bar/' and 'view2/' does not match 'bar/view2'. Request to
+	# 'bar/view2' redirects to '/bar/view2'. Likewise for 'quuz/'.
+	# ----------------------------------------------------------------
+	curl -sI http://localhost:8000/bar/view2 | grep 'HTTP\|Location'
+	curl -sI http://localhost:8000/quuz      | grep 'HTTP\|Location'
+	@echo
+	sleep 2
+	@echo
+	@echo Press ENTER to kill server.
+	@read
+	ps -e -o pid,args | grep 'manage\.py runserver$$' | \
+	    awk '{print $$1}' | xargs kill
+	sleep 2
 
 clean:
 	find . -name "__pycache__" -exec rm -r {} +
