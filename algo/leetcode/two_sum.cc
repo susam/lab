@@ -15,7 +15,7 @@ public:
     {
         std::unordered_map<int, int> index_map;
 
-        for (int i = 0; i < static_cast<int>(nums.size()); i++) {
+        for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
             auto value = nums[i];
             auto complement = index_map.find(target - value);
 
@@ -42,7 +42,7 @@ std::string vector_to_str(const std::vector<int>& v)
     if (v.size() > 0) {
         oss << v[0];
     }
-    for (std::size_t i = 1; i < v.size(); i++) {
+    for (std::size_t i = 1; i < v.size(); ++i) {
         oss << ", " << v[i];
     }
     oss << '}';
