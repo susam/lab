@@ -108,19 +108,7 @@ create-05-views-urls: clean
 	@echo Press ENTER to run server.; read
 	. ./venv && cd 05-views-urls && python3 manage.py runserver
 
-# Combination of project's path(route, include()) and app's path(route, view).
-create-06-path-include: clean
-	@echo
-	@echo Press ENTER to remove and create project again.
-	@echo Press Ctrl + C to abort.; read
-	@echo
-	rm -rf 06-path-include
-	. ./venv && django-admin startproject foo
-	mv foo 06-path-include
-	. ./venv && cd 06-path-include && python3 manage.py startapp bar
-
 06-path-include: clean
-	if [ ! -d "$@" ]; then make create-"$@"; fi
 	. ./venv && \
 	    cd 06-path-include && \
 	    python3 manage.py runserver 2> /dev/null &
