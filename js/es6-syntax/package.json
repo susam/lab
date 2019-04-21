@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "standard": "latest"
+  },
+  "scripts": {
+    "lint": "standard --verbose"
+  }
+}
