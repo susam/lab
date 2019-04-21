@@ -1,5 +1,3 @@
 body { color: #333 }
 nav a { margin-right: 1em }
 hr { margin: 1em 0 }
-table { border-collapse: collapse }
-th, td { border-bottom: thin solid #999; padding: 0.5em; text-align: left }

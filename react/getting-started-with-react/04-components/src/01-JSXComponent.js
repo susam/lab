@@ -4,7 +4,7 @@ class JSXComponent extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello, world from JSX component!</h1>
+        <h1>JSX Component</h1>
       </div>
     )
   }

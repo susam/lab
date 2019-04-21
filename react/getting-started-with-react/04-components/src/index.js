@@ -2,7 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import JSXComponent from './01-JSXComponent'
 import NonJSXComponent from './02-NonJSXComponent'
-import Table from './03-Table'
+import ClassComponent from './03-ClassComponent'
+import SimpleComponent from './04-SimpleComponent'
+import NestedComponent from './05-NestedComponent'
 import './index.css'
 
 class Navigation extends React.Component {
@@ -11,7 +13,9 @@ class Navigation extends React.Component {
       <nav>
         <a href="#JSXComponent">01-JSXComponent</a>
         <a href="#NonJSXComponent">02-NonJSXComponent</a>
-        <a href="#Table">03-Table</a>
+        <a href="#ClassComponent">03-ClassComponent</a>
+        <a href="#SimpleComponent">04-SimpleComponent</a>
+        <a href="#NestedComponent">05-NestedComponent</a>
         <hr />
       </nav>
     )
@@ -26,15 +30,20 @@ function renderComponent(Component) {
 let components = {
   JSXComponent: JSXComponent,
   NonJSXComponent: NonJSXComponent,
-  Table: Table,
+  ClassComponent: ClassComponent,
+  SimpleComponent: SimpleComponent,
+  NestedComponent: NestedComponent,
 }
 
 function renderApp() {
   let hash = window.location.hash
-  if (hash === '') {
+  let key = hash === '' ? '' : hash.substring(1)
+  let component = components[key]
+
+  if (typeof component === 'undefined') {
     renderComponent(JSXComponent)
   } else {
-    renderComponent(components[hash.substring(1)])
+    renderComponent(component)
   }
 }
 

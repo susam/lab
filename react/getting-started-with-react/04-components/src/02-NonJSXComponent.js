@@ -4,7 +4,7 @@ class NonJSXComponent extends React.Component {
   render() {
     return React.createElement(
       'div', { className: 'App' }, React.createElement(
-        'h1', null, 'Hello, world from non-JSX component!'
+        'h1', null, 'Non-JSX Component!'
       )
     )
   }
