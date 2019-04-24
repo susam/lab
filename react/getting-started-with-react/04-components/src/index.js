@@ -5,6 +5,7 @@ import NonJSXComponent from './02-NonJSXComponent'
 import ClassComponent from './03-ClassComponent'
 import SimpleComponent from './04-SimpleComponent'
 import NestedComponent from './05-NestedComponent'
+import PropsComponent from './06-PropsComponent'
 import './index.css'
 
 class Navigation extends React.Component {
@@ -16,6 +17,7 @@ class Navigation extends React.Component {
         <a href="#ClassComponent">03-ClassComponent</a>
         <a href="#SimpleComponent">04-SimpleComponent</a>
         <a href="#NestedComponent">05-NestedComponent</a>
+        <a href="#PropsComponent">06-PropsComponent</a>
         <hr />
       </nav>
     )
@@ -33,6 +35,7 @@ let components = {
   ClassComponent: ClassComponent,
   SimpleComponent: SimpleComponent,
   NestedComponent: NestedComponent,
+  PropsComponent: PropsComponent,
 }
 
 function renderApp() {
