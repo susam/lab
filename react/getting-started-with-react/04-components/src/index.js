@@ -7,6 +7,7 @@ import SimpleComponent from './04-SimpleComponent'
 import NestedComponent from './05-NestedComponent'
 import PropsComponent from './06-PropsComponent'
 import StateComponent from './07-StateComponent'
+import FormComponent from './08-FormComponent'
 import './index.css'
 
 class Navigation extends React.Component {
@@ -20,6 +21,7 @@ class Navigation extends React.Component {
         <a href="#NestedComponent">05-NestedComponent</a>
         <a href="#PropsComponent">06-PropsComponent</a>
         <a href="#StateComponent">07-StateComponent</a>
+        <a href="#FormComponent">08-FormComponent</a>
         <hr />
       </nav>
     )
@@ -39,6 +41,7 @@ let components = {
   NestedComponent: NestedComponent,
   PropsComponent: PropsComponent,
   StateComponent: StateComponent,
+  FormComponent: FormComponent,
 }
 
 function renderApp() {
