@@ -40,5 +40,19 @@ c letters i-n are integers and all others are real.
       p = 40
       write (*,*) g, h, o, p
 
+c The variables below also get implicit types.
+
+      write (*,*) k, l, q, r
+
+c The implicit reals above would contain garbage denormal numbers,
+c therefore the following note appears in the output:
+c
+c Note: The following floating-point exceptions are signalling:
+c IEEE_DENORMAL
+c
+c The standard requires all floating point exceptions that are
+c signalling to be reported when a STOP statement is executed. Thus the
+c above warning can be avoided by omitting the STOP statement.
+
       stop
-      end
+      end program

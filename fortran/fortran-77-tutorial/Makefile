@@ -2,19 +2,12 @@
 	gfortran -std=f95 -pedantic -Wall -Wextra $@
 	./a.out
 
-*-real.f:
-	@echo
-	@echo ----------------------------------------------------------
-	@echo Running without GNU extensions ...
-	@echo ----------------------------------------------------------
-	@echo
-	-gfortran -std=f95 -pedantic -Wall -Wextra $@
-	@echo
+gnu-10-real.f:
 	@echo ----------------------------------------------------------
 	@echo Running with GNU extensions ...
 	@echo ----------------------------------------------------------
 	@echo
-	gfortran -pedantic -Wall -Wextra $@
+	gfortran -pedantic -Wall -Wextra 10-real.f
 	@echo
 	./a.out
 

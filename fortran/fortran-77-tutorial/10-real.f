@@ -3,7 +3,9 @@
       real a
       double precision b
 
-c
+c Note: Run 'make gnu-10-real.f' to run this program with GNU extensions
+c enabled, so that this program can compile successfully.
+
 c Warning: GNU Extension: Nonstandard type declaration REAL*4 at (1)
 c Warning: GNU Extension: Nonstandard type declaration REAL*8 at (1) 
 c Warning: GNU Extension: Nonstandard type declaration REAL*16 at (1)
