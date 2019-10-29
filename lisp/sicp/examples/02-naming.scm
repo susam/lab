@@ -1,0 +1,5 @@
+(define size 2)
+(display size)
+(newline)
+(display (* 5 size))
+(newline)

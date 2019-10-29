@@ -1,10 +1,15 @@
 Structure and Interpretation of Computer Programs
 =================================================
 
-This document contains excerpts from the book *Structure and
-Interpretation of Computer Programs*, second edition by Harold Abelson,
-Gerald Jay Sussman, and Julie Sussman. Additionally, this document also
-contains [notes](#notes) I took while studying the book.
+This document contains excerpts from the book [*Structure and
+Interpretation of Computer Programs*](https://git.io/sicp.pdf), second edition
+by Harold Abelson, Gerald Jay Sussman, and Julie Sussman. Additionally, this
+document also contains [notes](#notes) I took while studying the book.
+
+See the [lab/lisp/sicp][examples] directory for example programs I have
+written while reading this book.
+
+[examples]: ../../lisp/sicp
 
 
 Dedication
@@ -157,6 +162,107 @@ maintain some sort of memory that keeps track of the name-object pairs.
 This memory is called the *environment* (more precisely the *global
 environment*, since we will see later that a computation may involve a
 number of different environments).
+
+
+### 1.1.3 Evaluating Combinations
+
+Thus, the evaluation rule is recursive in nature; that is, it includes,
+as one of its steps, the need to invoke the rule itself.
+
+...
+
+Each combination is represented by a node with branches corresponding to
+the operator and the operands of the combination stemming from it. The
+terminal nodes (that is, nodes with no branches stemming from them)
+represent either operators or numbers. Viewing evaluation in terms of
+the tree, we can imagine that the values of the operands percolate
+upward, starting from the terminal nodes and then combining at higher
+and higher levels. In general, we shall see that recursion is a very
+powerful technique for dealing with hierarchical, treelike objects. In
+fact, the "percolate values upward" form of the evaluation rule is an
+example of a general kind of process known as *tree accumulation*.
+
+...
+
+We take care of the primitive cases by stipulating that
+
+  - the values of numerals are the numbers that they name,
+  - the values of built-in operators are the machine instruction
+    sequences that carry out the corresponding operations, and
+  - the values of other names are the objects associated with those
+    names in the environment.
+
+We may regard the second rule as a special case of the third one by
+stipulating that symbols such as `+` and `*` are also included in the
+global environment, and are associated with the sequences of machine
+instructions that are their "values."
+
+...
+
+Notice that the evaluation rule given above does not handle definitions.
+For instance, evaluating `(define x 3)` does not apply `define` to two
+arguments, one of which is the value of the symbol `x` and the other of
+which is 3, since the purpose of the `define` is precisely to associate
+`x` with a value. (That is, `(define x 3)` is not a combination.)
+
+Such exceptions to the general evaluation rule are called *special forms*.
+
+
+### 1.1.4 Compound Procedures
+
+Now we will learn about *procedure definitions*, a much more powerful
+abstraction technique by which a compound operation can be given a name
+and then referred to as a unit.
+
+...
+
+We have here a *compound procedure*, which has been given the name
+`square`. ...
+
+The general form of a procedure definition is
+
+```scheme
+(define (<name> <formal parameters>)
+  <body>)
+```
+
+
+### 1.1.5 The Substitution Model for Procedure Application
+
+To evaluate a combination whose operator names a compound procedure, the
+interpreter follows much the same process as for combinations whose
+operators name primitive procedures, which we described in section
+1.1.3. That is, the interpreter evaluates the elements of the
+combination and applies the procedure (which is the value of the
+operator of the combination) to the arguments (which are the values of
+the operands of the combination).
+
+...
+
+To apply a compound procedure to arguments, evaluate the body of the
+procedure with each formal parameter replaced by the corresponding
+argument.
+
+
+#### Applicative order versus normal order
+
+This alternative "fully expand and then reduce" evaluation method is
+known as *normal-order evaluation*, in contrast to the "evaluate the
+arguments and then apply" method that the interpreter actually uses,
+which is called *applicative-order evaluation*. It can be shown that, for
+procedure applications that can be modeled using substitution (including
+all the procedures in the first two chapters of this book) and that
+yield legitimate values, normal-order and applicative-order evaluation
+produce the same value.
+
+Lisp uses applicative-order evaluation, partly because of the additional
+efficiency obtained from avoiding multiple evaluations of expressions
+such as those illustrated with `(+ 5 1)` and `(* 5 2)` above and, more
+significantly, because normal-order evaluation becomes much more
+complicated to deal with when we leave the realm of procedures that can
+be modeled by substitution. On the other hand, normal-order evaluation
+can be an extremely valuable tool, and we will investigate some of its
+implications in chapters 3 and 4.
 
 
 Notes
