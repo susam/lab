@@ -242,3 +242,117 @@ There are several possible explanations. Since both species have evolved
 prime number life cycles, they will be synchronised to emerge in the
 same year very rarely. In fact they will have to share the forest only
 every 221 = 17 x 13 years. ...
+
+
+### Proof, the mathematician's travelogue
+
+dmittedly, Fermat's Last Theorem was always called a theorem and never
+a conjecture. But that is unusual, and probably came about because
+Fermat claimed in notes that he scribbled in his copy of Diophantus's
+*Arithmetica* that he had a marvellous proof that was unfortunately too
+large to write in the margin of the page. Fermat never recorded his
+supposed proof anywhere, and his marginal comments became the biggest
+mathematical tease in the history of the subject. Until Andrew Wiles
+provided an argument, a proof of why Fermat's equations really had no
+interesting solutions, it actually remained a hypothesis -- merely
+wishful thinking.
+
+...
+
+The Cambridge mathematician G. H. Hardy, author of *A Mathematician's
+Apology*, used to describe the process of mathematical discovery and
+proof in terms of mapping out distant landscapes: 'I have always thought
+of a mathematician as in the first instance an observer, a man who gazes
+at a distant range of mountains and notes down his observations.' ...
+
+As the French mathematician André Weil expressed it, 'Rigour is to the
+mathematician what morality is to men.' ...
+
+Mathematics may be an ethereal subject confined to the mind, but its
+lack of tangible reality is more than compensated for by the certitude
+that proof provides.
+
+...
+
+Hardy encapsulates perfectly this tension between creation and discovery
+that every mathematician battles with: 'I believe that mathematical
+reality lies outside us, that our function is to discover or observe it
+and that the theorems which we prove and which we describe
+grandiloquently as our "creations" are simply our notes of our
+observations.' But at other times he favoured a more artistic
+description of the process of doing mathematics: 'Mathematics is not a
+contemplative but a creative subject,' he wrote in *A Mathematician's
+Apology*, a book Graham Greene ranked with Henry James's notebooks as
+the best account of what it is like to be a creative artist.
+
+
+### Euclid's fables
+
+More than any other Greek mathematician, Euclid is regarded as the
+father of the art of proof. He was part of the research institute that
+the Greek leader Ptolemy I established in Alexandria around 300
+BC. There, Euclid wrote one of the most influential
+textbooks in all of recorded history: *The Elements*. ...
+
+But as Cambridge don Hardy liked to say, 'Every fool can ask questions
+about prime numbers that the wisest man cannot answer.' ...
+
+Fermat discovered a curious fact about those prime numbers that leave
+remainder 1 on division by 4 -- examples are 5, 13, 17 and 29. Such prime
+numbers can always be written as the sum of two squares -- for example,
+29 = 2^5 + 5^2. ...
+
+On Christmas Day, 1640, Fermat wrote of his discovery -- that certain
+primes could be expressed as the sum of two squares -- in a letter to a
+French monk called Marin Mersenne. Mersenne's interests were not
+confined to liturgical matters. He loved music and was the first to
+develop a coherent theory of harmonics. He also loved numbers. Mersenne
+and Fermat corresponded regularly about their mathematical discoveries,
+and Mersenne broadcast many of Fermat's claims to a wider audience.
+Mersenne became renowned for his role as an international scientific
+clearing house through which mathematicians could disseminate their
+ideas.
+
+...
+
+Mersenne realised that if n was not prime then there was no chance that
+2^n − 1 was going to be prime. But now he boldly claimed that, for n up
+to 257, 2^n - 1 would be prime precisely if n one of the following
+numbers: 2, 3, 5, 7, 13, 19, 31, 67, 127, 257. ...
+
+Mathematicians believe that if one continues Mersenne's list, there will
+be infinitely many choices for n which will make Mersenne's numbers 2^n
+− 1 into prime numbers. But we are still missing a proof that this guess
+is true. We are still waiting for a modern day Euclid to prove that
+Mersenne's primes never run dry. Or perhaps this far-off peak is just a
+mathematical mirage.
+
+...
+
+Mathematicians were quite content with a more experimental approach to
+their subject, where in an increasingly mechanised world results were
+justified by their practical applications. In the eighteenth century,
+however, there arrived a mathematician who would rekindle a sense of the
+value of proof in mathematics. The Swiss mathematician Leonhard Euler,
+born in 1707, came up with explanations for many of the patterns that
+Fermat and Mersenne had discovered but failed to account for. ...
+
+
+### Euler, the mathematical eagle
+
+Euler was the son of a clergyman who hoped that his son would join him
+in the church. The young Euler's precocious mathematical talents,
+however, had brought him to the notice of the powers that be. Euler was
+soon being courted by the academies throughout Europe. He had been
+tempted to join the Academy in Paris, which by this time had become the
+world's centre of mathematical activity. He chose instead to accept an
+offer made to him in 1726 to join the Academy of Sciences in St
+Petersburg, the capstone for Peter the Great's campaign to improve
+education in Russia. ... Laden down with gifts, it took the young Euler
+seven weeks to complete the long journey by boat, on foot and by post
+wagon, and in May 1727 he finally arrived in St Petersburg to pursue his
+mathematical dreams. His subsequent output was so extensive that the St
+Petersburg Academy was still publishing material that had been housed in
+their archives some fifty years after Euler's death in 1783.
+
+...
