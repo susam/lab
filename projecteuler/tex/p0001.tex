@@ -1,0 +1,71 @@
+\section{Multiples of 3 and 5}
+
+
+\subsection{Problem}
+
+If we list all the natural numbers below 10 that are multiples of \( 3 \) or \(
+5 \), we get \( 3 \), \( 5 \), \( 6 \) and \( 9 \). The sum of these multiples
+is \( 23 \).
+
+Find the sum of all the multiples of \( 3 \) or \( 5 \) below \( 1000 \).
+
+
+\subsection{Solution}
+
+Let \( S_n = \{ x \mid x \text{ is a multiple of } n \text{ and } 0 < x
+< 1000 \} \).
+
+From the above definition we get,
+\begin{align*}
+ S_3    & = \{3, 6, 9, \dots, 993, 996, 999\}, \\
+ S_5    & = \{5, 10, 15, \dots, 985, 990, 995\}, \\
+ S_{15} & = \{15, 30, 45, \dots, 960, 975, 990\}.
+\end{align*}
+We want to find
+\[
+    \sum_{x \in (S_3 \cup S_5)} x.
+\]
+If we merely add the sum of all the numbers in \( S_3 \) to the sum of
+all numbers in \( S_5 \), then we add the numbers that are multiples
+of both \( 3 \) and \( 5 \) twice, that is, we add the numbers that
+are multiples of \( 15 \) twice. Therefore, we must subtract the sum of
+the multiples of \( 15 \) below \( 1000 \) to get the required sum, that
+is,
+\begin{align*}
+    \sum_{x \in (S_3 \cup S_5)}
+    & = \sum_{x \in S_3} +
+        \sum_{x \in S_5} -
+        \sum_{x \in (S_3 \cap S_5)} \\
+    & = \sum_{x \in S_3} +
+        \sum_{x \in S_5} -
+        \sum_{x \in S_{15}}.
+\end{align*}
+The above sum can be written as
+\[
+    3 \sum_{k=1}^{\left\lfloor \frac{m}{3} \right\rfloor} k +
+    5 \sum_{k=1}^{\left\lfloor \frac{m}{5} \right\rfloor} k -
+    15 \sum_{k=1}^{\left\lfloor \frac{m}{15} \right\rfloor} k
+\]
+where \( m = 999 \). Note that \( \sum_{k=1}^n k \) is the \( n \)th
+triangular number. Let us denote it as \( T_n \), that is,
+\[
+T_n = \sum_{k=1}^n k = \frac{n(n + 1)}{2}.
+\]
+The required sum can now be written as
+\[
+3 T_{\left\lfloor \frac{m}{3} \right\rfloor} +
+5 T_{\left\lfloor \frac{m}{5} \right\rfloor} -
+15 T_{\left\lfloor \frac{m}{15} \right\rfloor}
+\]
+where \( m = 999 \). The result is
+\begin{align*}
+& 3 T_{\left\lfloor \frac{999}{3} \right\rfloor} +
+  5 T_{\left\lfloor \frac{999}{5} \right\rfloor} -
+  15 T_{\left\lfloor \frac{999}{15} \right\rfloor} \\
+& = 3 T_{333} + 5 T_{199} - 15 T_{66} \\
+& = 3 \cdot \frac{333 \cdot 334}{2} +
+    5 \cdot \frac{199 \cdot 200}{2} -
+    15 \cdot \frac{66 \cdot 67}{2} \\
+& = 3 \cdot 55611 + 5 \cdot 19900 - 15 \cdot 2211 \\
+& = 233168.
+\end{align*}

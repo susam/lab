@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+
+% Set paper size.
+\usepackage[a5paper]{geometry}
+
+% Use links in table of contents.
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+% Add vertical space between paragraphs.
+\usepackage{parskip}
+
+% Math symbols.
+\usepackage{amsmath}
+
+% Colors
+\usepackage{xcolor}
+
+% Code examples.
+\usepackage{listings}
+
+% To include CC-BY license logo.
+\usepackage{graphicx}
+
+% Do not use monospace font for URLs.
+\urlstyle{same}
+
+\lstdefinestyle{cc}{
+    language=c++,
+    basicstyle=\small\ttfamily\color{blue!50!black},
+    commentstyle=\color{green!50!black},
+    directivestyle=\color{teal!75!black},
+    identifierstyle=\color{violet!75!black},
+    keywordstyle=\color{blue},
+    stringstyle=\color{magenta},
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    showstringspaces=false,
+}
+
+\author{Susam Pal}
+\title{Project Euler Solutions}
+
+\newcommand{\simpledate}{%
+    \the\day{}
+    \ifcase\month \or Jan \or Feb \or Mar \or Apr \or May \or Jun
+                  \or Jul \or Aug \or Sep \or Oct \or Nov \or Dec \fi
+    \the\year{}%
+}
+
+\newcommand{\updatedate}{\simpledate}
+
+\date{
+    \small Last updated on \updatedate
+
+}
+
+\newcommand{\ccfile}[2][]{\lstinputlisting[style=cc,#1]{#2}}
+\newcommand{\add}[1]{
+    \input{#1}
+    \pagebreak
+    \subsection{Program}
+    \ccfile{../c++/#1.cc}
+    \pagebreak
+}
+
+\setcounter{tocdepth}{1}
+
+\begin{document}
