@@ -20,8 +20,13 @@ Solution Programs
 The following table contains a list of all the solution programs
 available in this directory:
 
-| Program              | Problem Title                                       |
-| -------------------- | --------------------------------------------------- |
-| [p0001.cc](p0001.cc) | Multiples of 3 and 5                                |
+| Program                  | Problem Title                                    |
+| ------------------------ | ------------------------------------------------ |
+| [p0001.cc](c++/p0001.cc) | Multiples of 3 and 5                             |
 
 All programs listed above are licensed under the the [MIT License][MITL].
+
+
+[MITL]: https://opensource.org/licenses/MIT
+[CCBY]: https://creativecommons.org/licenses/by/4.0/
+[PDF]: https://susam.github.io/blob/lab/projecteuler/susam-projecteuler.pdf
