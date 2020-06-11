@@ -7,10 +7,11 @@ pdf:
 	cp tex/$(DOC).pdf ../../blob/lab/projecteuler
 	make clean
 
-1:
-	PN=$$(printf '%04d' "$@"); \
-	make single PN=$$PN && \
-	c++ -std=c++17 -pedantic -Wall -Wextra c++/p$$PN.cc
+1 2:
+	PN=$$(printf '%04d' "$@"); ( \
+	    if [ -e tex/$$PN.tex ]; then make single PN=$$PN; fi; \
+	    c++ -std=c++17 -pedantic -Wall -Wextra c++/p$$PN.cc \
+	)
 	# -------------------------------------------------------------
 	@./a.out
 	# -------------------------------------------------------------
