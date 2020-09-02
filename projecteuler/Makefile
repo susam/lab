@@ -1,5 +1,12 @@
 DOC = susam-projecteuler
 
+help:
+	@echo 'Usage: make [target]'
+	@echo
+	@echo '  pdf   Create combined PDF.'
+	@echo '  N     Run solution to problem N and create PDF for it.'
+	@echo '  help  Show this help message.'
+	
 pdf:
 	cd tex && pdflatex main && pdflatex main
 	mv tex/main.pdf "tex/$(DOC).pdf"
@@ -8,14 +15,14 @@ pdf:
 	make clean
 
 1 2:
-	PN=$$(printf '%04d' "$@"); ( \
+	@PN=$$(printf '%04d' "$@"); ( \
 	    if [ -e tex/$$PN.tex ]; then make single PN=$$PN; fi; \
-	    c++ -std=c++17 -pedantic -Wall -Wextra c++/p$$PN.cc \
+	    c++ -std=c++11 -pedantic -Wall -Wextra c++/$$PN.cc \
 	)
 	# -------------------------------------------------------------
 	@./a.out
 	# -------------------------------------------------------------
-	make clean
+	@make clean
 
 single:
 	cd tex && pdflatex '\def\pn{$(PN)}\input{single}'
@@ -35,7 +42,7 @@ view:
 	fi
 
 clean:
-	find . -name "*.out" -exec rm {} +
-	find . -name "*.aux" -exec rm {} +
-	find . -name "*.log" -exec rm {} +
-	find . -name "*.toc" -exec rm {} +
+	@find . -name "*.out" -exec rm {} +
+	@find . -name "*.aux" -exec rm {} +
+	@find . -name "*.log" -exec rm {} +
+	@find . -name "*.toc" -exec rm {} +
