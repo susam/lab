@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\title{\LaTeX{} to HTML Demo}
+\author{Susam Pal}
+\date{\normalsize 2 Sep 2020}
+\begin{document}
+\maketitle
+
+\section{Euler's Identity}
+In mathematics, \emph{Euler's identity} is the equality \[ e^{i \pi} + 1
+= 0. \]
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number \( x \),
+\[ e^{ix} = \cos x + i \sin x. \]
+
+\section{Binomial Theorem}
+\[ (x+y)^n = \sum_{k=0}^n {n \choose k} x^{n - k} y^k. \]
+
+\section{Exponential Function}
+\[ e^x = \lim_{n \to \infty} \left( 1+ \frac{x}{n} \right)^n. \]
+
+
+\section{Cauchy-Schwarz Inequality}
+\[
+    \left( \sum_{k=1}^n a_k b_k \right)^2 \leq
+    \left( \sum_{k=1}^n a_k^2 \right)
+    \left( \sum_{k=1}^n b_k^2 \right)
+\]
+
+
+\section{Bayes' Theorem}
+\[ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}. \]
+
+
+\section{Euler's Summation Formula}
+
+\begin{theorem}[Euler's summation formula]
+If \( f \) has a continuous derivative \( f' \) on the interval \( [y,
+x] \), where \( 0 < y < x \), then
+
+\begin{align}
+\sum_{y < n \le x} f(n) = & \int_y^x f(t) dt +
+                            \int_y^x (t - [t]) f'(t) dt \notag \\
+                          & + f(x)([x] - x) - f(y)([y] - y).
+\label{theorem}
+\end{align}
+
+\end{theorem}
+
+\begin{proof}
+Let \( m = [y] \), \( k = [x] \). For integers \( n \) and \( n - 1 \)
+in \( [y, x] \) we have
+\begin{align*}
+\int_{n-1}^n [t] f'(t) dt & = \int_{n-1}^n f'(t) dt \\
+                          & = (n - 1) \bigl( f(n) - f(n - 1)
+                                      \bigr) \\
+                          & = \bigl(
+                                n f(n) - (n - 1) f(n - 1)
+                              \bigr) - f(n).
+\end{align*}
+Summing from \( n = m + 1 \) to \( n = k \) we find
+\begin{align*}
+\int_{m}^k [t] f'(t) dt & = \sum_{n = m + 1}^k \bigl(
+                                n f(n) - (n - 1) f(n - 1)
+                            \bigr) - \sum_{y < n \le x} f(n) \\
+                        & = k f(k) - m f(m) -
+                            \sum_{y < n \le x} f(n).
+\end{align*}
+Hence,
+\begin{align}
+\sum_{y < n \le x} f(n) & = - \int_{m}^k [t] f'(t) dt +
+                              k f(k) - m f(m) \notag \\
+                        & = - \int_{y}^x [t] f'(t) dt +
+                              k f(x) - m f(y).
+\label{summation}
+\end{align}
+Integration by parts gives us
+\begin{equation*}
+\int_y^x f(t) dt = x f(x) - y f(y) - \int_y^x t f'(t) dt.
+\end{equation*}
+When this is combined with \( \eqref{summation} \) we obtain
+\( \eqref{theorem} \).
+\end{proof}
+
+
+\section{Hello World Program}
+
+Here is an example of \texttt{"hello, world"} program written in the C
+programming language:
+
+\begin{verbatim}
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world\n");
+    return 0;
+}
+\end{verbatim}
+\end{document}
