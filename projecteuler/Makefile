@@ -7,21 +7,30 @@ help:
 	@echo '  N     Run solution to problem N and create PDF for it.'
 	@echo '  help  Show this help message.'
 	
+DIST = ../../blob/lab/projecteuler/$(DOC).pdf
+
 pdf:
 	cd tex && pdflatex main && pdflatex main
 	mv tex/main.pdf "tex/$(DOC).pdf"
 	make view FILE=tex/$(DOC).pdf
-	cp tex/$(DOC).pdf ../../blob/lab/projecteuler
+	cp tex/$(DOC).pdf $(DIST)
 	make clean
+	# --------------------------------------------------------------
+	# PDF has been copy to:
+	#
+	#     $(DIST).
+	#
+	# Remember to commit it and publish.
+	# --------------------------------------------------------------
 
 1 2:
 	@PN=$$(printf '%04d' "$@"); ( \
 	    if [ -e tex/$$PN.tex ]; then make single PN=$$PN; fi; \
 	    c++ -std=c++11 -pedantic -Wall -Wextra c++/$$PN.cc \
 	)
-	# -------------------------------------------------------------
+	# --------------------------------------------------------------
 	@./a.out
-	# -------------------------------------------------------------
+	# --------------------------------------------------------------
 	@make clean
 
 single:
