@@ -3,8 +3,6 @@ pdf: clean
 	pdflatex foo.tex
 	make view FILE=foo.pdf
 
-pandoc: pandoc-standalone pandoc-template
-
 pandoc1:
 	pandoc foo.tex --standalone --mathjax -H pandoc-standalone-head.html \
 	--shift-heading-level-by=1 -o foo-pandoc1.html
@@ -16,6 +14,17 @@ pandoc2:
 	--shift-heading-level-by=1 -o foo-pandoc2.html
 	make view FILE=foo-pandoc2.html
 	make blob FILE=foo-pandoc2.html
+
+make4ht1:
+	make4ht foo mathjax
+	sed 's/foo\.css/foo-make4ht\.css/g' foo.html > foo-make4ht1.html
+	mv foo.css foo-make4ht1.css
+	make view FILE=foo-make4ht1.html
+	make blob FILE=foo-make4ht1.html
+	make blob FILE=foo-make4ht1.css
+
+setup:
+	sudo tlmgr install make4ht luaxml tex4ht environ trimspaces
 
 view:
 	if command -v xdg-open > /dev/null; then \
@@ -40,3 +49,7 @@ blob:
 
 clean:
 	rm -rf *.aux *.log *.out
+	rm -rf *.4ct *.4tc *.css *.dvi *.idv *.lg *.tmp *.xref
+
+clear:
+	rm foo-pandoc1.html foo-pandoc2.html
