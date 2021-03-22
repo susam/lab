@@ -1,0 +1,37 @@
+make[1]: Entering directory '/root/lab/c++/iosync'
+uname -a
+Linux li2203-114 4.19.0-14-amd64 #1 SMP Debian 4.19.171-2 (2021-01-30) x86_64 GNU/Linux
+c++ --version
+c++ (Debian 8.3.0-6) 8.3.0
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 printf.cc && time ./a.out > num.txt
+0.14user 0.01system 0:00.16elapsed 99%CPU (0avgtext+0avgdata 2728maxresident)k
+0inputs+13456outputs (0major+120minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cout.cc && time ./a.out > num.txt
+0.11user 0.00system 0:00.12elapsed 99%CPU (0avgtext+0avgdata 3208maxresident)k
+0inputs+13456outputs (0major+135minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cout-sync.cc && time ./a.out > num.txt
+0.10user 0.00system 0:00.10elapsed 100%CPU (0avgtext+0avgdata 3212maxresident)k
+0inputs+13456outputs (0major+137minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 scanf.cc && time ./a.out < num.txt
+0.13user 0.00system 0:00.13elapsed 100%CPU (0avgtext+0avgdata 2708maxresident)k
+0inputs+0outputs (0major+120minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin.cc && time ./a.out < num.txt
+2.56user 0.03system 0:02.60elapsed 99%CPU (0avgtext+0avgdata 3088maxresident)k
+0inputs+0outputs (0major+133minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin-sync.cc && time ./a.out < num.txt
+2.02user 0.00system 0:02.02elapsed 99%CPU (0avgtext+0avgdata 3120maxresident)k
+0inputs+0outputs (0major+138minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 printf-scanf.cc && time ./a.out < num.txt > out.txt
+3.23user 0.23system 0:03.46elapsed 99%CPU (0avgtext+0avgdata 2864maxresident)k
+0inputs+13456outputs (0major+123minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin-cout.cc && time ./a.out < num.txt > out.txt
+0.96user 1.49system 0:02.46elapsed 99%CPU (0avgtext+0avgdata 3132maxresident)k
+0inputs+13456outputs (0major+135minor)pagefaults 0swaps
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin-cout-sync.cc && time ./a.out < num.txt > out.txt
+0.23user 0.00system 0:00.24elapsed 99%CPU (0avgtext+0avgdata 3156maxresident)k
+0inputs+13456outputs (0major+141minor)pagefaults 0swaps
+make[1]: Leaving directory '/root/lab/c++/iosync'
