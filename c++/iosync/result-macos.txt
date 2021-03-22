@@ -1,0 +1,52 @@
+uname -a
+Darwin mac.local 19.6.0 Darwin Kernel Version 19.6.0: Thu Oct 29 22:56:45 PDT 2020; root:xnu-6153.141.2.2~1/RELEASE_X86_64 x86_64
+c++ --version
+Apple clang version 12.0.0 (clang-1200.0.32.27)
+Target: x86_64-apple-darwin19.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 printf.cc && time ./a.out > num.txt
+
+real	0m0.303s
+user	0m0.121s
+sys	0m0.008s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cout.cc && time ./a.out > num.txt
+
+real	0m0.374s
+user	0m0.305s
+sys	0m0.009s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cout-sync.cc && time ./a.out > num.txt
+
+real	0m0.380s
+user	0m0.307s
+sys	0m0.009s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 scanf.cc && time ./a.out < num.txt
+
+real	0m0.173s
+user	0m0.111s
+sys	0m0.004s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin.cc && time ./a.out < num.txt
+
+real	0m2.605s
+user	0m2.536s
+sys	0m0.007s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin-sync.cc && time ./a.out < num.txt
+
+real	0m2.572s
+user	0m2.497s
+sys	0m0.007s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 printf-scanf.cc && time ./a.out < num.txt > out.txt
+
+real	0m0.334s
+user	0m0.261s
+sys	0m0.012s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin-cout.cc && time ./a.out < num.txt > out.txt
+
+real	0m6.074s
+user	0m3.278s
+sys	0m2.708s
+c++ -std=c++11 -Wall -Wextra -pedantic -O2 cin-cout-sync.cc && time ./a.out < num.txt > out.txt
+
+real	0m2.842s
+user	0m2.766s
+sys	0m0.014s
