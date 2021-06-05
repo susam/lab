@@ -10,7 +10,7 @@ def home():
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Server Time (Ajax)</title>
+<title>Server Time</title>
 <style>
 body {background: beige; font-size: 2em; text-align: center}
 button {font-size: 0.75em}
@@ -18,8 +18,8 @@ time {color: green}
 </style>
 </head>
 <body>
-<p>Server time: <time id="time">""" + formatted_time() + """</time></p>
-<button id="button">Refresh via Ajax</button>
+<p>Server time: <time>""" + formatted_time() + """</time></p>
+<button id="button">Refresh page</button>
 <script>
 const button = document.getElementById('button')
 button.onclick = function () {
