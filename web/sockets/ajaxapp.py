@@ -55,4 +55,8 @@ def formatted_time():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    from gevent.pywsgi import WSGIServer
+    port = 8000
+    server = WSGIServer(('', port), app)
+    print('Starting server on port', port, '...')
+    server.serve_forever()
