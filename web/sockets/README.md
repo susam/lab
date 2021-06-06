@@ -20,6 +20,8 @@ your system, continue reading with the next section.
 Contents
 --------
 
+* [Background](#background)
+* [Setup](#setup)
 * [Run Example Apps](#run-example-apps)
   * [TCP Socket App](#tcp-socket-app)
   * [Web App](#web-app)
@@ -34,6 +36,89 @@ Contents
   * [Web App Payloads](#web-app-payloads)
   * [Ajax App Payloads](#ajax-app-payloads)
   * [WebSocket App Payloads](#websocket-app-payloads)
+
+
+Background
+----------
+
+The programs in this directory implement very simple and minimal
+server programs that send the server's current time to the client. The
+same functionality is implemented in four different ways:
+
+  - As a TCP socket program ([tcpapp.py](tcpapp.py)): The server
+    program listens on a TCP port. A client connects to it. The server
+    responds with the current time on the server in the welcome
+    message. The client can request for the current time anytime by
+    sending a message. The server program is extremely simple on
+    purpose and handles all incoming connections sequentially. The
+    focus here is on inspecting the packet traffic, not developing a
+    robust server program. This became a popular way of developing
+    network applications in the 1980s. The technology behind this
+    approach has its roots in Berkeley sockets that was introduced
+    in 1983. This was later standardized in the POSIX socket API. The
+    example program here uses Python's standard library `socket`
+    module that provides access to the Berkeley socket interface.
+
+  - As a plain web application ([webapp.py](webapp.py)): The server
+    program contains a web server that serves a dynamic web page that
+    can be viewed using a web browser. This approach is popular since
+    early 1990s when the world wide web was born. The server serves a
+    page with dynamic content via CGI, PHP, ASP, etc. If any component
+    in the page needed to be updated, the whole page has to be
+    refreshed. Often the dynamic content is be separated out into a
+    tiny page that is loaded in an `<iframe>` element, so that
+    updating the dynamic content involves reloading a tiny page. Such
+    a page is usually designed to reload every few seconds or minutes.
+    However, in the example program here, the user needs to manually
+    click on a button to reload the page. None of the examples here
+    update the dynamic content automatically, so that we can manually
+    refresh the content when we need. This allows us to control the
+    generation of payloads manually so that we can observe them
+    conveniently using a packet capture tool.
+
+  - As an Ajax application ([ajaxapp.py](ajaxapp.py)): The server
+    serves a web page with JavaScript code embedded in it to the
+    client. When some dynamic content in the page needs to be updated,
+    the JavaScript code runs on the browser and sends a so-called
+    Asynchronous JavaScript and XML (AJAX) request to the server. An
+    Ajax request is actually a plain HTTP request but it is called so
+    due to the fact that it can be invoked asynchronously after a page
+    has been loaded without having to reload the entire page. The
+    server responds with updated data. The JavaScript code then
+    updates the page's Document Object Model (DOM) to display the
+    updated data. This approach avoids reloading the entire page to
+    display updated dynamic data. This approach became popular since
+    the early 2000s when Microsoft used it to implement dynamic
+    updates in Outlook Web Access. XML was a popular data interchange
+    format in the early days but now JSON has overtaken it in
+    popularity. The example program in this directory uses JSON as the
+    data interchange format.
+
+  - As a WebSocket application ([wsapp.py](wsapp.py)): The server
+    serves a web page with JavaScript code embedded in it. The
+    JavaScript makes an HTTP request to the server and immediately
+    upgrades the communication protocol to WebSocket, a bidirectional,
+    stateful protocol. The JavaScript code running on the web page may
+    create multiple WebSockets and the web browser would create these
+    full-duplex communication channels within the same TCP connection.
+    It provides bidirectional and stateful features within the same
+    TCP connection. The client or the server may send messages to each
+    other without having to create new full-blown HTTP requests. This
+    approach became popular in the 2010s, especially, to implement
+    chat applications and other applications that require frequent
+    updates. This avoids the need for the client to poll the server
+    periodically as is common in the Ajax approach. In December 2019,
+    Google Chrome 4 was the first browser to ship full support for
+    WebSockets. Now it is available as a standard feature in all major
+    browsers.
+
+Note that this document does not concern itself with Socket.IO at all.
+Socket.IO is a JavaScript library that enables real-time,
+bidirectional, event-based communication between web clients and
+server. Socket.IO uses WebSocket internally but it also supports
+falling back to HTTP long-polling (a popular approach for Ajax-based
+applications) if support for WebSocket is not found in the web client.
+This document concerns itself with WebSocket only, not Socket.IO.
 
 
 Setup
@@ -311,7 +396,7 @@ This section presents application layer payload extracted from
 [pcap/webapp.pcap](pcap/webapp.pcap) captured while running
 [webapp.py](webapp.py).
 
-```
+```html
 GET / HTTP/1.1
 Host: 172.105.253.239:8000
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
@@ -464,7 +549,7 @@ This section presents application layer payload extracted from
 [pcap/ajaxapp.pcap](pcap/ajaxapp.pcap) captured while running
 [ajaxapp.py](ajaxapp.py).
 
-```
+```html
 GET / HTTP/1.1
 Host: 172.105.253.239:8000
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
@@ -571,7 +656,7 @@ This section presents application layer payload extracted from
 The client creates two connections with the websocket app. Here is the
 initial connection that loads the home page:
 
-```
+```html
 GET / HTTP/1.1
 Host: 172.105.253.239:8000
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
