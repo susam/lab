@@ -49,15 +49,16 @@ same functionality is implemented in four different ways:
     program listens on a TCP port. A client connects to it. The server
     responds with the current time on the server in the welcome
     message. The client can request for the current time anytime by
-    sending a message. The server program is extremely simple on
-    purpose and handles all incoming connections sequentially. The
-    focus here is on inspecting the packet traffic, not developing a
-    robust server program. This became a popular way of developing
-    network applications in the 1980s. The technology behind this
-    approach has its roots in Berkeley sockets that was introduced
-    in 1983. This was later standardized in the POSIX socket API. The
-    example program here uses Python's standard library `socket`
-    module that provides access to the Berkeley socket interface.
+    sending a message. The server program provided here is extremely
+    simple on purpose and handles all incoming connections
+    sequentially. The focus here is on inspecting the packet traffic,
+    not developing a robust server program. The usage of TCP sockets
+    to develop network applications became popular in the 1980s. The
+    technology behind this approach has its roots in Berkeley sockets
+    that was introduced in 1983. This was later standardized in the
+    POSIX socket API. The example program here uses Python's standard
+    library `socket` module that provides access to the Berkeley
+    socket interface.
 
   - As a plain web application ([webapp.py](webapp.py)): The server
     program contains a web server that serves a dynamic web page that
@@ -731,9 +732,9 @@ Sec-WebSocket-Accept: jvz8rJ0yJN/A4J0kiZQLiifpQO8=
 ).Qh];BdDs..{"time": "09:43:38"}................{"time": "09:43:48"}....4...@...Y...{"time": "09:43:58"}.....b.2..
 ```
 
-The last line in the output above is the data exchanged over the
-WebSocket. The non-printable characters are displayed as dots above.
-Here is a hex dump of that data.
+The last two lines in the output above show the payload data exchanged
+over the WebSocket. The non-printable characters are displayed as dots
+above. Here is a hex dump of this data:
 
 ```
 000001DB  81 88 36 0d 29 16 51 68  5d 3b 42 64 44 73         ..6.).Qh ];BdDs     [C1]
@@ -776,7 +777,7 @@ to decode C1:
   - The bytes `36 0d 29 16` contain the masking key.
 
   - The bytes `51 68 5d 3b 42 64 44 73` contain the masked payload. We
-    can use the masking to decode them like this:
+    can use the masking key to decode it like this:
 
     ```
     $ python3 -q
@@ -789,22 +790,22 @@ to decode C1:
     'get-time'
     ```
 
-The payloads in C2 and C3 similarly decode to `get-time`. Here is a
+The payloads in C2 and C3 similarly decode to `'get-time'`. Here is a
 description of C4:
 
   - The initial `88` is `10001000` in binary. It has two flags set.
     The second flag set indicates that this is a "connection close"
     frame.
 
-  - The second `82` is `10000010` in binary. It indicates that the
+  - The following `82` is `10000010` in binary. It indicates that the
     payload data is masked and the payload length is 2.
 
   - The bytes `19 db 13 62` form the masking key.
 
   - The payload data `1a 32` decodes to `03 e9`. This is the integer
-    `1001` in network byte order which defines the status code "going
-    away" for the close frame. Here is an example of how the payload
-    is decoded:
+    1001 written in big-endian format. The integer 1001 is defined as
+    the status code "going away" for the close frame. Here is an
+    example of how this payload is decoded to obtain the status code:
 
     ```
     $ python3 -q
