@@ -2,37 +2,38 @@ From Sockets to WebSockets
 ==========================
 
 This directory contains some experimental code that allows us to see
-plain TCP socket, a simple HTTP application, an AJAX-based
-application, and a WebSocket-based application in action and study the
-properties of the application layer payloads that are exchanged while
-each application is running and compare them against each other.
+plain TCP socket-based application, a simple HTTP web application, an
+AJAX-based application, and a WebSocket-based application in action
+and study the underlying application layer payloads that are exchanged
+between the client and the server while each application.
 
-All code here is minimal in nature. No encryption is used. There is no
-or very little error handling. The objective here is limited to
-comparing only the application layer payloads resulting from the
-various programs.
+All code here is minimal in nature. No encryption is used. There is
+very little error handling. The objective here is limited to comparing
+only the application layer payloads resulting from the various
+programs.
+
+To see only what the payloads look like for each example application,
+go to section [Payloads](#payloads). To run the example programs on
+your system, continue reading with the next section.
 
 
 Contents
 --------
- * [Get Started](#get-started)
- * [Setup](#setup)
- * [TCP Socket App](#simple-tcp-socket-app)
- * [Web App](#simple-web-app)
- * [Ajax App](#ajax-app)
- * [Websocket App](#websocket-app)
 
-Get Started
------------
-
-If you only want to see what the payloads look like for each example
-application, see the [pcaps](pcaps) folder that contain all the packet
-captures corresponding to each example application. A summarized view
-of these packet captures is provided in section [PCAP
-Summary](#pcap-summary).
-
-If you want to run the example programs on your system, continue
-reading with the next section.
+* [Run Example Apps](#run-example-apps)
+  * [TCP Socket App](#tcp-socket-app)
+  * [Web App](#web-app)
+  * [Ajax App](#ajax-app)
+  * [Websocket App](#websocket-app)
+* [Packet Captures](#packet-captures)
+  * [Overall Statistics](#overall-statistics)
+  * [Per Update Statistics](#per-update-statistics)
+  * [Legend](#legend)
+* [Payloads](#payloads)
+  * [TCP Socket App Payloads](#tcp-socket-app-payloads)
+  * [Web App Payloads](#web-app-payloads)
+  * [Ajax App Payloads](#ajax-app-payloads)
+  * [WebSocket App Payloads](#websocket-app-payloads)
 
 
 Setup
@@ -49,15 +50,20 @@ run the example programs:
     using [Homebrew](https://brew.sh/) with this command:
 
     ```sh
-    brew install git python netcat
+    brew install git netcat python
     ```
 
-    On Debian, Ubuntu, or a similar system, you may install them with
-    this command:
+    On Debian, Ubuntu, or a similar system, enter the following
+    command:
 
     ```sh
-    brew install git python3 netcat
+    apt-get update
+    apt-get install git netcat python3 python3-venv python3-dev gcc make
     ```
+
+    Note that `python3-dev`, `gcc`, and `make` are required on Debian
+    to build `gevent`, a required dependency to be able to run most of
+    the example programs in this directory.
 
  2. Clone this repository and make this directory the current
     directory:
@@ -98,8 +104,11 @@ you lose the virtual Python environment for any reason, run
 The remaning sections explain how to run and use each example program.
 
 
-TCP Socket App
---------------
+Run Example Apps
+----------------
+
+
+### TCP Socket App
 
 Perform the following steps to run the simple TCP socket app
 [tcpapp.py](tcpapp.py) and interact with it:
@@ -138,13 +147,10 @@ Perform the following steps to run the simple TCP socket app
 
     bye
     Good bye!
-
-    $
     ```
 
 
-Web App
--------
+### Web App
 
 Perform the following steps to run the simple web app
 [webapp.py](webapp.py) and interact with it:
@@ -152,7 +158,7 @@ Perform the following steps to run the simple web app
   1. Enter the following command to run the simple web app server
      program:
 
-     ```
+     ```sh
      python3 webapp.py
      ```
 
@@ -162,8 +168,7 @@ Perform the following steps to run the simple web app
   3. Click the "Refresh page" button. Updated time should appear.
 
 
-Ajax App
---------
+### Ajax App
 
 Perform the following steps to run the Ajax-based app
 [ajaxapp.py](ajaxapp.py) and interact with it:
@@ -171,7 +176,7 @@ Perform the following steps to run the Ajax-based app
   1. Enter the following command to run the simple web app server
      program:
 
-     ```
+     ```sh
      python3 ajaxapp.py
      ```
 
@@ -181,15 +186,14 @@ Perform the following steps to run the Ajax-based app
   3. Click the "Refresh with Ajax" button. Updated time should appear.
 
 
-WebSocket App
--------------
+### WebSocket App
 
 Perform the following steps to run the WebSocket-based app
 [wsapp.py](wsapp.py) and interact with it:
 
  1. Enter the following command:
 
-    ```
+    ```sh
     python3 wsapp.py
     ```
 
@@ -198,3 +202,538 @@ Perform the following steps to run the WebSocket-based app
 
  3. Click the "Refresh via WebSocket" button. Updated time should
     appear.
+
+
+Packet Captures
+---------------
+
+Packet captures for each example is available in the [pcap](pcap)
+directory. The timeline for each package capture roughly looks like
+this:
+
+| Time          | Description                                        |
+| ------------- | -------------------------------------------------- |
+| 00:00:00      | Client connects to server and obtains current time |
+| 00:00:10      | Client sends update request to obtain current time |
+| 00:00:20      | Client sends update request to obtain current time |
+| 00:00:30      | Client sends update request to obtain current time |
+| 00:00:40      | Client is closed                                   |
+
+Each example program was run on a Linode virtual machine running
+Debian GNU/Linux 10.9 (buster). Packet captures were obtained by
+running the following command on the Debian system:
+
+```sh
+tcpdump -i eth0 -w filename.pcap port 8000
+```
+
+For the TCP socket app, Netcat 46.40.1 was used to connect to it from
+a macOS Catalina 10.15.7. For the other web apps, Firefox 89.0 was
+used to connect to them from the same macOS system.
+
+
+### Overall Statistics
+
+Here is an overall summary of some packet details found in the packet
+captures:
+
+| PCAP                         | Total Packets | App Packets | Frame Bytes | TCP Bytes | App Bytes |
+| ---------------------------- | ------------- | ----------- | ----------- | --------- | --------- |
+| [tcpapp.pcap](tcpapp.pcap)   | 18            | 7           | 1283        | 596       | 75        |
+| [webapp.pcap](webapp.pcap)   | 27            | 8           | 5468        | 884       | 3666      |
+| [ajaxapp.pcap](ajaxapp.pcap) | 27            | 8           | 4320        | 884       | 2518      |
+| [wsapp.pcap](wsapp.pcap)     | 34            | 12          | 4163        | 1104      | 1903      |
+
+For more details on the meaning of the table column headings, see
+section [Legend](#legend).
+
+
+### Per Update Statistics
+
+The table below shows the statistics for a single server-time update
+requested by the user, i.e., this table shows the statistics for a
+single request for server time sent by the user and the corresponding
+response received.
+
+| PCAP                         | Total Packets | App Packets  | Frame Bytes | TCP Bytes    | App Bytes |
+| ---------------------------- | ------------- | ------------ | ----------- | ------------ | --------- |
+| [tcpapp.pcap](tcpapp.pcap)   | 3             | 2            | 213         | 96           | 15        |
+| [webapp.pcap](webapp.pcap)   | 5             | 3            | 1253        | 160          | 923       |
+| [ajaxapp.pcap](ajaxapp.pcap) | 5             | 3            | 746         | 160          | 416       |
+| [wsapp.pcap](wsapp.pcap)     | 3             | 2            | 234         | 96           | 36        |
+
+
+### Legend
+
+Here is a brief description of the column headings in the tables above:
+
+  - Total Packets: Total number of packets.
+  - App Packets: Number of only those packets that include application
+    layer protocol data.
+  - Frame Bytes: Total bytes found in all frames.
+  - TCP Bytes: Bytes found only in TCP headers.
+  - App Bytes: Bytes found only in application layer payloads.
+
+Note that Frame Bytes = 34 * Total Packets + TCP Bytes + App Bytes.
+The number 34 in this formula is the sum of the length of the ethernet
+header and the length of the IPv4 header in each packet found in the
+PCAP, i.e., 34 = 14 + 20.
+
+
+Payloads
+--------
+
+### TCP Socket App Payloads
+
+This section presents application layer payload extracted from
+[pcap/tcpapp.pcap](pcap/tcpapp.pcap) captured while running
+[tcpapp.py](tcpapp.py).
+
+```
+Hello!
+Server time: 09:31:35
+
+time
+09:31:45
+
+time
+09:31:55
+
+time
+09:32:05
+
+```
+
+
+### Web App Payloads
+
+This section presents application layer payload extracted from
+[pcap/webapp.pcap](pcap/webapp.pcap) captured while running
+[webapp.py](webapp.py).
+
+```
+GET / HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 435
+Date: Sun, 06 Jun 2021 09:36:17 GMT
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Server Time</title>
+<style>
+body {background: beige; font-size: 2em; text-align: center}
+button {font-size: 0.75em}
+time {color: green}
+</style>
+</head>
+<body>
+<p>Server time: <time>09:36:17</time></p>
+<button id="button">Refresh page</button>
+<script>
+const button = document.getElementById('button')
+button.onclick = function () {
+  window.location.reload()
+}
+</script>
+</body>
+</html>
+GET / HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 435
+Date: Sun, 06 Jun 2021 09:36:27 GMT
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Server Time</title>
+<style>
+body {background: beige; font-size: 2em; text-align: center}
+button {font-size: 0.75em}
+time {color: green}
+</style>
+</head>
+<body>
+<p>Server time: <time>09:36:27</time></p>
+<button id="button">Refresh page</button>
+<script>
+const button = document.getElementById('button')
+button.onclick = function () {
+  window.location.reload()
+}
+</script>
+</body>
+</html>
+GET / HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 435
+Date: Sun, 06 Jun 2021 09:36:37 GMT
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Server Time</title>
+<style>
+body {background: beige; font-size: 2em; text-align: center}
+button {font-size: 0.75em}
+time {color: green}
+</style>
+</head>
+<body>
+<p>Server time: <time>09:36:37</time></p>
+<button id="button">Refresh page</button>
+<script>
+const button = document.getElementById('button')
+button.onclick = function () {
+  window.location.reload()
+}
+</script>
+</body>
+</html>
+GET / HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 435
+Date: Sun, 06 Jun 2021 09:36:47 GMT
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Server Time</title>
+<style>
+body {background: beige; font-size: 2em; text-align: center}
+button {font-size: 0.75em}
+time {color: green}
+</style>
+</head>
+<body>
+<p>Server time: <time>09:36:47</time></p>
+<button id="button">Refresh page</button>
+<script>
+const button = document.getElementById('button')
+button.onclick = function () {
+  window.location.reload()
+}
+</script>
+</body>
+</html>
+```
+
+
+### Ajax App Payloads
+
+This section presents application layer payload extracted from
+[pcap/ajaxapp.pcap](pcap/ajaxapp.pcap) captured while running
+[ajaxapp.py](ajaxapp.py).
+
+```
+GET / HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 808
+Date: Sun, 06 Jun 2021 09:39:28 GMT
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Server Time (Ajax)</title>
+<style>
+body {background: beige; font-size: 2em; text-align: center}
+button {font-size: 0.75em}
+time {color: green}
+</style>
+</head>
+<body>
+<p>Server time: <time id="time">09:39:28</time></p>
+<button id="button">Refresh via Ajax</button>
+<script>
+const button = document.getElementById('button')
+const time = document.getElementById('time')
+button.onclick = function () {
+  const xhr = new XMLHttpRequest()
+  xhr.open('GET', '/time')
+  xhr.responseType = 'json'
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      time.innerHTML = xhr.response.price
+    } else {
+      time.innerHTML = '[load error]'
+    }
+  }
+  xhr.onerror = function () {
+    time.innerHTML = '[xhr error]'
+  }
+  xhr.send()
+}
+</script>
+</body>
+</html>
+GET /time HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Referer: http://172.105.253.239:8000/
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 21
+Date: Sun, 06 Jun 2021 09:39:38 GMT
+
+{"price":"09:39:38"}
+GET /time HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Referer: http://172.105.253.239:8000/
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 21
+Date: Sun, 06 Jun 2021 09:39:48 GMT
+
+{"price":"09:39:48"}
+GET /time HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Referer: http://172.105.253.239:8000/
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 21
+Date: Sun, 06 Jun 2021 09:39:58 GMT
+
+{"price":"09:39:58"}
+```
+
+
+### WebSocket App Payloads
+
+This section presents application layer payload extracted from
+[pcap/wsapp.pcap](pcap/wsapp.pcap) captured while running
+[wsapp.py](wsapp.py).
+
+The client creates two connections with the websocket app. Here is the
+initial connection that loads the home page:
+
+```
+GET / HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 719
+Date: Sun, 06 Jun 2021 09:43:28 GMT
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Server Time (WebSocket)</title>
+<style>
+body {background: beige; font-size: 2em; text-align: center}
+button {font-size: 0.75em}
+time {color: green}
+</style>
+</head>
+<body>
+<p>Server time: <time id="time">09:43:28</time></p>
+<button id="button">Refresh via WebSocket</button>
+<script>
+const button = document.getElementById('button')
+const time = document.getElementById('time')
+const ws = new WebSocket('ws://' + window.location.host + '/time')
+button.onclick = function () {
+  ws.send('get-time')
+}
+ws.onmessage = function (event) {
+  time.innerHTML = JSON.parse(event.data).time
+}
+ws.onerror = function (event) {
+  time.innerHTML = '[error]'
+}
+</script>
+</body>
+</html>
+```
+
+Then the JavaScript code executing in the home page creates another
+connection to the web server and immediately upgrades the protocol to
+WebSocket:
+
+```
+GET /time HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Sec-WebSocket-Version: 13
+Origin: http://172.105.253.239:8000
+Sec-WebSocket-Extensions: permessage-deflate
+Sec-WebSocket-Key: W+pQUnxtfyImglCepUIxdw==
+Connection: keep-alive, Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: jvz8rJ0yJN/A4J0kiZQLiifpQO8=
+
+..6
+).Qh];BdDs..{"time": "09:43:38"}................{"time": "09:43:48"}....4...@...Y...{"time": "09:43:58"}.....b.2..
+```
+
+The last line in the output above is the data exchanged over the
+WebSocket. The non-printable characters are displayed as dots above.
+Here is a hex dump of that data.
+
+```
+000001DB  81 88 36 0d 29 16 51 68  5d 3b 42 64 44 73         ..6.).Qh ];BdDs     [C1]
+
+00000081  81 14 7b 22 74 69 6d 65  22 3a 20 22 30 39 3a 34   ..{"time ": "09:4   [S1]
+00000091  33 3a 33 38 22 7d                                  3:38"}
+
+000001E9  81 88 a2 f4 f0 d0 c5 91  84 fd d6 9d 9d b5         ........ ......     [C2]
+
+00000097  81 14 7b 22 74 69 6d 65  22 3a 20 22 30 39 3a 34   ..{"time ": "09:4   [S2]
+000000A7  33 3a 34 38 22 7d                                  3:48"}
+
+000001F7  81 88 a6 91 34 fd c1 f4  40 d0 d2 f8 59 98         ....4... @...Y.     [C3]
+
+000000AD  81 14 7b 22 74 69 6d 65  22 3a 20 22 30 39 3a 34   ..{"time ": "09:4   [S3]
+000000BD  33 3a 35 38 22 7d                                  3:58"}
+
+00000205  88 82 19 db 13 62 1a 32                            .....b.2            [C4]
+
+000000C3  88 00                                              ..                  [S4]
+```
+
+The WebSocket frames labelled C1, C2, C3, and C4 are sent from client
+to server. Payload data in all frames sent from client to server are
+masked by a 32-bit masking key. That is why the payloads in these
+frames appear to be gibberish. The frames labelled S1, S2, S3, and S4
+are sent from server to client. Here is a brief explanation about how
+to decode C1:
+
+  - The initial `81` is `10000001` in binary. It has two flags set.
+    The first flag set indicates that the current frame is the final
+    fragment in the message, i.e., the message is composed of one
+    frame in this case. The second flag set indicates that it is a
+    text frame.
+
+  - The following `88` is `10001000` in binary. The first `1` bit
+    indicates that the payload data is masked. The remaining bits
+    indicates that the payload is 8 bytes in length.
+
+  - The bytes `36 0d 29 16` contain the masking key.
+
+  - The bytes `51 68 5d 3b 42 64 44 73` contain the masked payload. We
+    can use the masking to decode them like this:
+
+    ```
+    $ python3 -q
+    >>> m = bytes([0x36, 0x0d, 0x29, 0x16])
+    >>> p = bytes([0x51, 0x68, 0x5d, 0x3b, 0x42, 0x64, 0x44, 0x73])
+    >>> s = ''
+    >>> for i in range(len(p)): s += chr(p[i] ^ m[i % 4])
+    ...
+    >>> s
+    'get-time'
+    ```
+
+The payloads in C2 and C3 similarly decode to `get-time`. Here is a
+description of C4:
+
+  - The initial `88` is `10001000` in binary. It has two flags set.
+    The second flag set indicates that this is a "connection close"
+    frame.
+
+  - The second `82` is `10000010` in binary. It indicates that the
+    payload data is masked and the payload length is 2.
+
+  - The bytes `19 db 13 62` form the masking key.
+
+  - The payload data `1a 32` decodes to `03 e9`. This is the integer
+    `1001` in network byte order which defines the status code "going
+    away" for the close frame. Here is an example of how the payload
+    is decoded:
+
+    ```
+    $ python3 -q
+    >>> print(hex(0x1a ^ 0x19), hex(0x32 ^ 0xdb))
+    0x3 0xe9
+    >>> print(0x3e9)
+    1001
+    ```
+
+Finally, S4 is also a "connection close" frame as indicated by the
+initial `88` in it and the `00` following it just indicates that there
+is no payload data in this frame.
+
+See [RFC 6455: &sect;5.2] for more details on WebSocket message
+format.
+
+[RFC 6455: &sect;5.2]: https://datatracker.ietf.org/doc/html/rfc6455#section-5.2
