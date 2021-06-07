@@ -45,62 +45,61 @@ The programs in this directory implement very simple and minimal
 server programs that send the server's current time to the client. The
 same functionality is implemented in four different ways:
 
-  - As a TCP socket program ([tcpapp.py](tcpapp.py)): The server
-    program listens on a TCP port. A client connects to it. The server
-    responds with the current time on the server in the welcome
-    message. The client can request for the current time anytime by
-    sending a message. The server program provided here is extremely
-    simple on purpose and handles all incoming connections
-    sequentially. The focus here is on inspecting the packet traffic,
-    not developing a robust server program. The usage of TCP sockets
-    to develop network applications became popular in the 1980s. The
-    technology behind this approach has its roots in Berkeley sockets
-    that was introduced in 1983. This was later standardized in the
-    POSIX socket API. The example program here uses Python's standard
-    library `socket` module that provides access to the Berkeley
-    socket interface.
+  - As a TCP socket program ([tcpapp.py]): The server program listens
+    on a TCP port. A client connects to it. The server responds with
+    the current time on the server in the welcome message. The client
+    can request for the current time anytime by sending a message. The
+    server program provided here is extremely simple on purpose and
+    handles all incoming connections sequentially. The focus here is
+    on inspecting the packet traffic, not developing a robust server
+    program. The usage of TCP sockets to develop network applications
+    became popular in the 1980s. The technology behind this approach
+    has its roots in Berkeley sockets that was introduced in 1983.
+    This was later standardized in the POSIX socket API. The example
+    program here uses Python's standard library `socket` module that
+    provides access to the Berkeley socket interface.
 
-  - As a plain web application ([webapp.py](webapp.py)): The server
-    program contains a web server that serves a dynamic web page that
-    can be viewed using a web browser. This approach is popular since
-    early 1990s when the world wide web was born. The server serves a
-    page with dynamic content via CGI, PHP, ASP, etc. If any component
-    in the page needed to be updated, the whole page has to be
-    refreshed. Often the dynamic content is be separated out into a
-    tiny page that is loaded in an `<iframe>` element, so that
-    updating the dynamic content involves reloading a tiny page. Such
-    a page is usually designed to reload every few seconds or minutes.
-    However, in the example program here, the user needs to manually
-    click on a button to reload the page. None of the examples here
-    update the dynamic content automatically, so that we can manually
-    refresh the content when we need. This allows us to control the
-    generation of payloads manually so that we can observe them
-    conveniently using a packet capture tool.
+  - As a plain web application ([webapp.py]): The server program
+    contains a web server that serves a dynamic web page that can be
+    viewed using a web browser. This approach is popular since early
+    1990s when the world wide web was born. The server serves a page
+    with dynamic content via CGI, PHP, ASP, etc. If any component in
+    the page needed to be updated, the whole page has to be refreshed.
+    Often the dynamic content is be separated out into a tiny page
+    that is loaded in an `<iframe>` element, so that updating the
+    dynamic content involves reloading a tiny page. Such a page is
+    usually designed to reload every few seconds or minutes. However,
+    in the example program here, the user needs to manually click on a
+    button to reload the page. None of the examples here update the
+    dynamic content automatically, so that we can manually refresh the
+    content when we need. This allows us to control the generation of
+    payloads manually so that we can observe them conveniently using a
+    packet capture tool.
 
-  - As an Ajax application ([ajaxapp.py](ajaxapp.py)): The server
-    serves a web page with JavaScript code embedded in it to the
-    client. When some dynamic content in the page needs to be updated,
-    the JavaScript code runs on the browser and sends a so-called
-    Asynchronous JavaScript and XML (AJAX) request to the server. An
-    Ajax request is actually a plain HTTP request but it is called so
-    due to the fact that it can be invoked asynchronously after a page
-    has been loaded without having to reload the entire page. The
-    server responds with updated data. The JavaScript code then
-    updates the page's Document Object Model (DOM) to display the
-    updated data. This approach avoids reloading the entire page to
-    display updated dynamic data. This approach became popular since
-    the early 2000s when Microsoft used it to implement dynamic
-    updates in Outlook Web Access. XML was a popular data interchange
-    format in the early days but now JSON has overtaken it in
-    popularity. The example program in this directory uses JSON as the
-    data interchange format.
+  - As an Ajax application ([ajaxapp.py]): The server serves a web
+    page with JavaScript code embedded in it to the client. When some
+    dynamic content in the page needs to be updated, the JavaScript
+    code runs on the browser and sends a so-called Asynchronous
+    JavaScript and XML (AJAX) request to the server. An Ajax request
+    is actually a plain HTTP request but it is called so due to the
+    fact that it can be invoked asynchronously after a page has been
+    loaded without having to reload the entire page. The server
+    responds with updated data. The JavaScript code then updates the
+    page's Document Object Model (DOM) to display the updated data.
+    This approach avoids reloading the entire page to display updated
+    dynamic data. This approach became popular since the early 2000s
+    when Microsoft used it to implement dynamic updates in Outlook Web
+    Access. XML was a popular data interchange format in the early
+    days but now JSON has overtaken it in popularity. The example
+    program in this directory uses JSON as the data interchange
+    format.
 
-  - As a WebSocket application ([wsapp.py](wsapp.py)): The server
-    serves a web page with JavaScript code embedded in it. The
-    JavaScript makes an HTTP request to the server and immediately
-    upgrades the communication protocol to WebSocket, a bidirectional,
-    stateful protocol. The JavaScript code running on the web page may
-    create multiple WebSockets and the web browser would create these
+  - As a WebSocket application ([wsapp.py]): The server serves a web
+    page with JavaScript code embedded in it. The JavaScript makes an
+    HTTP request to the server and immediately upgrades the
+    communication protocol to WebSocket, a bidirectional, stateful
+    protocol. The JavaScript code running on the web page may create
+    multiple WebSockets and the web browser would create these
     full-duplex communication channels within the same TCP connection.
     It provides bidirectional and stateful features within the same
     TCP connection. The client or the server may send messages to each
@@ -197,7 +196,7 @@ Run Example Apps
 ### TCP Socket App
 
 Perform the following steps to run the simple TCP socket app
-[tcpapp.py](tcpapp.py) and interact with it:
+[tcpapp.py] and interact with it:
 
 
  1. Enter the following command to run the TCP server program:
@@ -238,8 +237,8 @@ Perform the following steps to run the simple TCP socket app
 
 ### Web App
 
-Perform the following steps to run the simple web app
-[webapp.py](webapp.py) and interact with it:
+Perform the following steps to run the simple web app [webapp.py] and
+interact with it:
 
   1. Enter the following command to run the simple web app server
      program:
@@ -256,8 +255,8 @@ Perform the following steps to run the simple web app
 
 ### Ajax App
 
-Perform the following steps to run the Ajax-based app
-[ajaxapp.py](ajaxapp.py) and interact with it:
+Perform the following steps to run the Ajax-based app [ajaxapp.py] and
+interact with it:
 
   1. Enter the following command to run the simple web app server
      program:
@@ -274,8 +273,8 @@ Perform the following steps to run the Ajax-based app
 
 ### WebSocket App
 
-Perform the following steps to run the WebSocket-based app
-[wsapp.py](wsapp.py) and interact with it:
+Perform the following steps to run the WebSocket-based app [wsapp.py]
+and interact with it:
 
  1. Enter the following command:
 
@@ -323,12 +322,12 @@ used to connect to them from the same macOS system.
 Here is an overall summary of some packet details found in the packet
 captures:
 
-| PCAP                         | Total Packets | App Packets | Frame Bytes | TCP Bytes | App Bytes |
-| ---------------------------- | ------------- | ----------- | ----------- | --------- | --------- |
-| [tcpapp.pcap](tcpapp.pcap)   | 18            | 7           | 1283        | 596       | 75        |
-| [webapp.pcap](webapp.pcap)   | 27            | 8           | 5468        | 884       | 3666      |
-| [ajaxapp.pcap](ajaxapp.pcap) | 27            | 8           | 4320        | 884       | 2518      |
-| [wsapp.pcap](wsapp.pcap)     | 34            | 12          | 4163        | 1104      | 1903      |
+| PCAP                | Total Packets | App Packets | Frame Bytes | TCP Bytes | App Bytes |
+| ------------------- | ------------- | ----------- | ----------- | --------- | --------- |
+| [pcap/tcpapp.pcap]  | 18            | 7           | 1283        | 596       | 75        |
+| [pcap/webapp.pcap]  | 27            | 8           | 5468        | 884       | 3666      |
+| [pcap/ajaxapp.pcap] | 27            | 8           | 4320        | 884       | 2518      |
+| [pcap/wsapp.pcap]   | 34            | 12          | 4163        | 1104      | 1903      |
 
 For more details on the meaning of the table column headings, see
 section [Legend](#legend).
@@ -341,12 +340,15 @@ requested by the user, i.e., this table shows the statistics for a
 single request for server time sent by the user and the corresponding
 response received.
 
-| PCAP                         | Total Packets | App Packets  | Frame Bytes | TCP Bytes    | App Bytes |
-| ---------------------------- | ------------- | ------------ | ----------- | ------------ | --------- |
-| [tcpapp.pcap](tcpapp.pcap)   | 3             | 2            | 213         | 96           | 15        |
-| [webapp.pcap](webapp.pcap)   | 5             | 3            | 1253        | 160          | 923       |
-| [ajaxapp.pcap](ajaxapp.pcap) | 5             | 3            | 746         | 160          | 416       |
-| [wsapp.pcap](wsapp.pcap)     | 3             | 2            | 234         | 96           | 36        |
+| PCAP                | Total Packets | App Packets  | Frame Bytes | TCP Bytes    | App Bytes |
+| ------------------- | ------------- | ------------ | ----------- | ------------ | --------- |
+| [pcap/tcpapp.pcap]  | 3             | 2            | 213         | 96           | 15        |
+| [pcap/webapp.pcap]  | 5             | 3            | 1253        | 160          | 923       |
+| [pcap/ajaxapp.pcap] | 5             | 3            | 746         | 160          | 416       |
+| [pcap/wsapp.pcap]   | 3             | 2            | 234         | 96           | 36        |
+
+For more details on the meaning of the table column headings, see the
+next section.
 
 
 ### Legend
@@ -356,7 +358,7 @@ Here is a brief description of the column headings in the tables above:
   - Total Packets: Total number of packets.
   - App Packets: Number of only those packets that include application
     layer protocol data.
-  - Frame Bytes: Total bytes found in all frames.
+  - Frame Bytes: Total bytes found in frames.
   - TCP Bytes: Bytes found only in TCP headers.
   - App Bytes: Bytes found only in application layer payloads.
 
@@ -372,8 +374,7 @@ Payloads
 ### TCP Socket App Payloads
 
 This section presents application layer payload extracted from
-[pcap/tcpapp.pcap](pcap/tcpapp.pcap) captured while running
-[tcpapp.py](tcpapp.py).
+[pcap/tcpapp.pcap] captured while running [tcpapp.py].
 
 ```
 Hello!
@@ -390,12 +391,15 @@ time
 
 ```
 
+In the above output, only `time` followed by a newline was sent by the
+client to the server. All the remaining output was sent by the server
+to client.
+
 
 ### Web App Payloads
 
 This section presents application layer payload extracted from
-[pcap/webapp.pcap](pcap/webapp.pcap) captured while running
-[webapp.py](webapp.py).
+[pcap/webapp.pcap] captured while running [webapp.py].
 
 ```html
 GET / HTTP/1.1
@@ -547,8 +551,7 @@ button.onclick = function () {
 ### Ajax App Payloads
 
 This section presents application layer payload extracted from
-[pcap/ajaxapp.pcap](pcap/ajaxapp.pcap) captured while running
-[ajaxapp.py](ajaxapp.py).
+[pcap/ajaxapp.pcap] captured while running [ajaxapp.py].
 
 ```html
 GET / HTTP/1.1
@@ -651,8 +654,7 @@ Date: Sun, 06 Jun 2021 09:39:58 GMT
 ### WebSocket App Payloads
 
 This section presents application layer payload extracted from
-[pcap/wsapp.pcap](pcap/wsapp.pcap) captured while running
-[wsapp.py](wsapp.py).
+[pcap/wsapp.pcap] captured while running [wsapp.py].
 
 The client creates two connections with the websocket app. Here is the
 initial connection that loads the home page:
@@ -823,3 +825,13 @@ See [RFC 6455: &sect;5.2] for more details on WebSocket message
 format.
 
 [RFC 6455: &sect;5.2]: https://datatracker.ietf.org/doc/html/rfc6455#section-5.2
+
+[tcpapp.py]: tcpapp.py
+[webapp.py]: webapp.py
+[ajaxapp.py]: ajaxapp.py
+[wsapp.py]: wsapp.py
+
+[pcap/tcpapp.pcap]: pcap/tcpapp.pcap
+[pcap/webapp.pcap]: pcap/webapp.pcap
+[pcap/ajaxapp.pcap]: pcap/ajaxapp.pcap
+[pcap/wsapp.pcap]: pcap/wsapp.py
