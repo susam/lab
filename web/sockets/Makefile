@@ -12,4 +12,10 @@ venv: FORCE
 	python3 -m venv ~/.venv/websockets
 	echo . ~/.venv/websockets/bin/activate > venv
 
+parsepcap:
+	sh parsepcap.sh pcap/tcpapp.pcap > pcap/tcpapp.txt
+	sh parsepcap.sh pcap/webapp.pcap > pcap/webapp.txt
+	sh parsepcap.sh pcap/ajaxapp.pcap > pcap/ajaxapp.txt
+	sh parsepcap.sh pcap/wsapp.pcap > pcap/wsapp.txt
+
 FORCE:
