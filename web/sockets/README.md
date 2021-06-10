@@ -351,7 +351,7 @@ captures:
 | ------------------- | ------------- | ----------- | ----------- | --------- | --------- |
 | [pcap/tcpapp.pcap]  | 18            | 7           | 1283        | 596       | 75        |
 | [pcap/webapp.pcap]  | 27            | 8           | 5468        | 884       | 3666      |
-| [pcap/ajaxapp.pcap] | 27            | 8           | 4320        | 884       | 2518      |
+| [pcap/ajaxapp.pcap] | 27            | 8           | 4316        | 884       | 2514      |
 | [pcap/wsapp.pcap]   | 34            | 12          | 4163        | 1104      | 1903      |
 
 For more details on the meaning of the table column headings, see
@@ -369,7 +369,7 @@ corresponding response received.
 | ------------------- | ------------- | ------------ | ----------- | ------------ | --------- |
 | [pcap/tcpapp.pcap]  | 3             | 2            | 213         | 96           | 15        |
 | [pcap/webapp.pcap]  | 5             | 3            | 1253        | 160          | 923       |
-| [pcap/ajaxapp.pcap] | 5             | 3            | 746         | 160          | 416       |
+| [pcap/ajaxapp.pcap] | 5             | 3            | 745         | 160          | 415       |
 | [pcap/wsapp.pcap]   | 3             | 2            | 234         | 96           | 36        |
 
 For more details on the meaning of the table column headings, see the
@@ -601,8 +601,8 @@ Upgrade-Insecure-Requests: 1
 
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
-Content-Length: 808
-Date: Sun, 06 Jun 2021 09:39:28 GMT
+Content-Length: 807
+Date: Thu, 10 Jun 2021 08:04:13 GMT
 
 <!DOCTYPE html>
 <html lang="en">
@@ -615,7 +615,7 @@ time {color: green}
 </style>
 </head>
 <body>
-<p>Server time: <time id="time">09:39:28</time></p>
+<p>Server time: <time id="time">08:04:13</time></p>
 <button id="button">Refresh via Ajax</button>
 <script>
 const button = document.getElementById('button')
@@ -626,7 +626,7 @@ button.onclick = function () {
   xhr.responseType = 'json'
   xhr.onload = function () {
     if (xhr.status === 200) {
-      time.innerHTML = xhr.response.price
+      time.innerHTML = xhr.response.time
     } else {
       time.innerHTML = '[load error]'
     }
@@ -650,10 +650,10 @@ Referer: http://172.105.253.239:8000/
 
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 21
-Date: Sun, 06 Jun 2021 09:39:38 GMT
+Content-Length: 20
+Date: Thu, 10 Jun 2021 08:04:23 GMT
 
-{"price":"09:39:38"}
+{"time":"08:04:23"}
 GET /time HTTP/1.1
 Host: 172.105.253.239:8000
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
@@ -665,10 +665,10 @@ Referer: http://172.105.253.239:8000/
 
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 21
-Date: Sun, 06 Jun 2021 09:39:48 GMT
+Content-Length: 20
+Date: Thu, 10 Jun 2021 08:04:33 GMT
 
-{"price":"09:39:48"}
+{"time":"08:04:33"}
 GET /time HTTP/1.1
 Host: 172.105.253.239:8000
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
@@ -680,10 +680,10 @@ Referer: http://172.105.253.239:8000/
 
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 21
-Date: Sun, 06 Jun 2021 09:39:58 GMT
+Content-Length: 20
+Date: Thu, 10 Jun 2021 08:04:43 GMT
 
-{"price":"09:39:58"}
+{"time":"08:04:43"}
 ```
 
 
