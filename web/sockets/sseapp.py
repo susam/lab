@@ -1,10 +1,11 @@
 import json
+import sys
 import time
 import flask
 import flask_sockets
 
+
 app = flask.Flask(__name__)
-sockets = flask_sockets.Sockets(app)
 
 
 @app.route('/')
@@ -23,12 +24,12 @@ time {color: green}
 <p>Server time: <time id="time">""" + formatted_time() + """</time></p>
 <script>
 const time = document.getElementById('time')
-var eventSource = new EventSource("/time");
+var eventSource = new EventSource('/time');
 eventSource.onmessage = function (event) {
-     time.innerHTML = JSON.parse(event.data).time
+  time.innerHTML = JSON.parse(event.data).time
 };
 eventSource.onerror = function (event) {
-     time.innerHTML = '[error]'
+  time.innerHTML = '[error]'
 };
 </script>
 </body>
@@ -36,13 +37,14 @@ eventSource.onerror = function (event) {
 """
 
 
-@app.route("/time")
+@app.route('/time')
 def stream():
+    interval = int(sys.argv[1]) if len(sys.argv) > 1 else 1
     def event_stream():
         while True:
-            time.sleep(1)
-            yield "data: {}\n\n".format(json.dumps({'time': formatted_time()}))
-    return flask.Response(event_stream(), mimetype="text/event-stream")
+            time.sleep(interval)
+            yield 'data: {}\n\n'.format(json.dumps({'time': formatted_time()}))
+    return flask.Response(event_stream(), mimetype='text/event-stream')
 
 
 
@@ -52,7 +54,7 @@ def formatted_time():
 
 if __name__ == '__main__':
     from gevent.pywsgi import WSGIServer
-    PORT = 8000
-    server = WSGIServer(('', PORT), app)
-    print('Starting server on port', PORT, '...')
+    port = 8000
+    server = WSGIServer(('', port), app)
+    print('Starting server on port', port, '...')
     server.serve_forever()
