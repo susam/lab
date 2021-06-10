@@ -16,6 +16,7 @@ parsepcap:
 	sh parsepcap.sh pcap/tcpapp.pcap > pcap/tcpapp.txt
 	sh parsepcap.sh pcap/webapp.pcap > pcap/webapp.txt
 	sh parsepcap.sh pcap/ajaxapp.pcap > pcap/ajaxapp.txt
+	sh parsepcap.sh pcap/sseapp.pcap > pcap/sseapp.txt
 	sh parsepcap.sh pcap/wsapp.pcap > pcap/wsapp.txt
 
 FORCE:

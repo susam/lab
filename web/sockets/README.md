@@ -35,6 +35,7 @@ Contents
   * [TCP Socket App Payloads](#tcp-socket-app-payloads)
   * [Web App Payloads](#web-app-payloads)
   * [Ajax App Payloads](#ajax-app-payloads)
+  * [SSE App Payloads](#sse-app-payloads)
   * [WebSocket App Payloads](#websocket-app-payloads)
 * [Thanks](#thanks)
 
@@ -97,7 +98,7 @@ talks about these different approaches in a general manner.
   - SSE-based web application: SSE stands for server-sent events. The
     server pushes continuous updates in form of events to the client
     after the initial connnection is established. SSE is
-    one-directional where events are sent only from server to the
+    unidirectional where events are sent only from server to the
     clients. The server sends the events using MIME type
     `text/event-stream`. Each event sent by the server is in the form
     of a text block terminated by a pair of newlines. SSE has a
@@ -362,10 +363,17 @@ like this:
 
 The only exception to the above timeline is the server-sent
 event-based program in [sseapp.py]. Since SSE establishes a
-one-directional stream of events, there is no request going from
-client to server to obtain current time. Instead the server sends an
-updated time to the client automatically at 00:00:10, 00:00:20, and
-00:00:30.
+unidirectional stream of events, there is no request going from
+client to server to obtain current time. The timeline for the PCAP of
+SSE example looks like this:
+
+| Time          | Description                                        |
+| ------------- | -------------------------------------------------- |
+| 00:00:00      | Client connects to server and obtains current time |
+| 00:00:10      | Server sends current time to client                |
+| 00:00:20      | Server sends current time to client                |
+| 00:00:30      | Server sends current time to client                |
+| 00:00:35      | Client is closed                                   |
 
 Each example program was run on a Linode virtual machine running
 Debian GNU/Linux 10.9 (buster). The PCAPs were obtained by running the
@@ -394,8 +402,9 @@ captures:
 | PCAP                | Total Packets | App Packets | Frame Bytes | TCP Bytes | App Bytes |
 | ------------------- | ------------- | ----------- | ----------- | --------- | --------- |
 | [pcap/tcpapp.pcap]  | 18            | 7           | 1283        | 596       | 75        |
-| [pcap/webapp.pcap]  | 27            | 8           | 5468        | 884       | 3666      |
-| [pcap/ajaxapp.pcap] | 27            | 8           | 4316        | 884       | 2514      |
+| [pcap/webapp.pcap]  | 27            | 12          | 5468        | 884       | 3666      |
+| [pcap/ajaxapp.pcap] | 27            | 12          | 4316        | 884       | 2514      |
+| [pcap/sseapp.pcap]  | 21            | 8           | 3015        | 692       | 1609      |
 | [pcap/wsapp.pcap]   | 34            | 12          | 4163        | 1104      | 1903      |
 
 For more details on the meaning of the table column headings, see
@@ -414,6 +423,7 @@ corresponding response received.
 | [pcap/tcpapp.pcap]  | 3             | 2            | 213         | 96           | 15        |
 | [pcap/webapp.pcap]  | 5             | 3            | 1253        | 160          | 923       |
 | [pcap/ajaxapp.pcap] | 5             | 3            | 745         | 160          | 415       |
+| [pcap/sseapp.pcap]  | 2             | 1            | 166         | 64           | 34        |
 | [pcap/wsapp.pcap]   | 3             | 2            | 234         | 96           | 36        |
 
 For more details on the meaning of the table column headings, see the
@@ -423,6 +433,28 @@ consumption than the dynamic web app or Ajax-based web app. This is so
 because WebSockets have very small header data. While an HTTP payload
 may have a few hundred bytes of HTTP headers, a WebSocket payload has
 only a few bytes of header data.
+
+Note that the statistics for SSE-based app looks slightly better than
+that of WebSocket-based app because the SSE-based app does not include
+any requests from client to server due to the unidirectional nature
+of SSE. If we compare the statistics of TCP-based app, SSE-based app
+and Websocket-based app for the data being sent only from server to
+client, it looks like this:
+
+| PCAP                | Total Packets | App Packets  | Frame Bytes | TCP Bytes    | App Bytes |
+| ------------------- | ------------- | ------------ | ----------- | ------------ | --------- |
+| [pcap/tcpapp.pcap]  | 2             | 1            | 142         | 64           | 10        |
+| [pcap/sseapp.pcap]  | 2             | 1            | 166         | 64           | 34        |
+| [pcap/wsapp.pcap]   | 2             | 1            | 154         | 64           | 22        |
+
+We don't include dynamic web app and Ajax-based app in the above table
+because there is no way for these applications to send messages to a
+client in a unidirectional manner. A dynamic web app and an Ajax-based
+app can only send a response after a client has sent a request.
+However, it is possible for TCP-based app, SSE-based app, and
+Websocket-based app to send messages to a client in an already
+established socket, event-stream, and websocket, respectively, without
+the client having to request them.
 
 
 ### Legend
@@ -728,6 +760,77 @@ Content-Length: 20
 Date: Thu, 10 Jun 2021 08:04:43 GMT
 
 {"time":"08:04:43"}
+```
+
+### SSE App Payloads
+
+```html
+GET / HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 569
+Date: Thu, 10 Jun 2021 11:42:04 GMT
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Server Time (Server Sent Event)</title>
+<style>
+body {background: beige; font-size: 2em; text-align: center}
+button {font-size: 0.75em}
+time {color: green}
+</style>
+</head>
+<body>
+<p>Server time: <time id="time">11:42:04</time></p>
+<script>
+const time = document.getElementById('time')
+var eventSource = new EventSource('/time');
+eventSource.onmessage = function (event) {
+  time.innerHTML = JSON.parse(event.data).time
+};
+eventSource.onerror = function (event) {
+  time.innerHTML = '[error]'
+};
+</script>
+</body>
+</html>
+GET /time HTTP/1.1
+Host: 172.105.253.239:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/event-stream
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Referer: http://172.105.253.239:8000/
+Pragma: no-cache
+Cache-Control: no-cache
+
+HTTP/1.1 200 OK
+Content-Type: text/event-stream; charset=utf-8
+Date: Thu, 10 Jun 2021 11:42:14 GMT
+Transfer-Encoding: chunked
+
+1c
+data: {"time": "11:42:14"}
+
+
+1c
+data: {"time": "11:42:24"}
+
+
+1c
+data: {"time": "11:42:34"}
+
+
 ```
 
 
