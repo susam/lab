@@ -29,7 +29,7 @@ button.onclick = function () {
   xhr.responseType = 'json'
   xhr.onload = function () {
     if (xhr.status === 200) {
-      time.innerHTML = xhr.response.price
+      time.innerHTML = xhr.response.time
     } else {
       time.innerHTML = '[load error]'
     }
@@ -47,7 +47,7 @@ button.onclick = function () {
 
 @app.route('/time')
 def server_time():
-    return flask.jsonify({'price': formatted_time()})
+    return flask.jsonify({'time': formatted_time()})
 
 
 def formatted_time():
