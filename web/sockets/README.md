@@ -26,6 +26,7 @@ Contents
   * [Web App](#web-app)
   * [Ajax App](#ajax-app)
   * [Websocket App](#websocket-app)
+  * [Server-Sent Event (SSE) App](#server-sent-event-app)
 * [Packet Captures](#packet-captures)
   * [Overall Statistics](#overall-statistics)
   * [Per Update Statistics](#per-update-statistics)
@@ -43,9 +44,10 @@ Background
 The programs in this directory implement very simple and minimal
 server programs that send the server's current time to the client. The
 same functionality is implemented in four different ways: TCP socket
-program, plain web application, Ajax-based web application, and
-Websocket-based web application. The list below talks about these
-different approaches in a general manner.
+program, plain web application, Ajax-based web application,
+Websocket-based web application and Server-Sent Event (SSE) based
+web applications.The list below talks about these different approaches
+in a general manner.
 
   - TCP sockets: A server program listens on a TCP port. A client
     program connects to it. Once the connection has been established
@@ -56,7 +58,6 @@ different approaches in a general manner.
     Berkeley socket API was created 4.2BSD Unix to create and work
     with sockets. It soon became a de facto standard for working with
     sockets. The POSIX as well as Windows socket APIs are based on it.
-
   - Dynamic web application: A server application is served via a web
     server. The server application serves a dynamically generated web
     page that can be viewed using a web browser. This approach became
@@ -74,7 +75,6 @@ different approaches in a general manner.
     reload automatically every few seconds or minutes. The `<iframe>`
     element was first introduced in Internet Explorer by Microsoft in
     1996.
-
   - Ajax-based web application: The server serves a web page with
     JavaScript code embedded in it to the client. When some dynamic
     content in the page needs to be updated, the JavaScript code runs
@@ -91,7 +91,6 @@ different approaches in a general manner.
     implement dynamic updates in Outlook Web Access. XML was a popular
     data interchange format in the early days but now JSON has
     overtaken it in popularity.
-
   - WebSocket-based web application: The server serves a web page with
     JavaScript code embedded in it to the client. The JavaScript code
     executes on the web browser and makes an HTTP request to the
@@ -109,6 +108,19 @@ different approaches in a general manner.
     Ajax approach. In December 2009, Google Chrome 4 was the first
     browser to ship full support for WebSockets. Now it is available
     as a standard feature in most major browsers.
+  - Server-Sent Event (SSE) based web application: The server pushes
+    continuous updates in form of events to the client after the
+    initial connnection is established. Unlike WebSockets, SSE is
+    omni-directional where events are sent only from server to the
+    clients. The server sends the events using MIME type
+    `text/event-stream`. Each event sent by the server is in form of a
+    text block text terminated by a pair of newlines. SSE has a
+    limitation of maximum number of open connections. This limit is 6
+    and is per domain+browser. It means that one can open only 6 
+    SSE connections across all of the browser tabs to a domain.
+    Opera was the first browser to support SSE in 2006. Since, then
+    all major browsers but Internet Explorer have supported SSE.
+
 
 Note that this document does not concern itself with Socket.IO at all.
 Socket.IO is a JavaScript library that enables real-time,
@@ -306,6 +318,22 @@ and interact with it:
 
  3. Click the "Refresh via WebSocket" button. Updated time should
     appear.
+
+
+### Server-Sent Event App
+
+Perform the following steps to run the SSE-based app [sseapp.py]
+and interact with it:
+
+ 1. Enter the following command:
+
+    ```sh
+    python3 sseapp.py
+    ```
+
+ 2. Visit http://localhost:8000/ with a web browser. A web page with
+    the current time should appear. The time will update every one
+    second
 
 
 Packet Captures
