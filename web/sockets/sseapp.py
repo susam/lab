@@ -2,8 +2,6 @@ import json
 import sys
 import time
 import flask
-import flask_sockets
-
 
 app = flask.Flask(__name__)
 
@@ -22,11 +20,17 @@ time {color: green}
 </head>
 <body>
 <p>Server time: <time id="time">""" + formatted_time() + """</time></p>
+<p id="refresh_interval" style="font-size:18px;"></p>
 <script>
 const time = document.getElementById('time')
+const refresh_interval = document.getElementById('refresh_interval')
 var eventSource = new EventSource('/time');
 eventSource.onmessage = function (event) {
-  time.innerHTML = JSON.parse(event.data).time
+  jsonData = JSON.parse(event.data)
+  time.innerHTML = jsonData.time
+  refresh_interval.innerHTML = "(Refresh frequency "
+                                 + jsonData.refresh_interval
+                                 + "s)"
 };
 eventSource.onerror = function (event) {
   time.innerHTML = '[error]'
@@ -40,12 +44,14 @@ eventSource.onerror = function (event) {
 @app.route('/time')
 def stream():
     interval = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+
     def event_stream():
         while True:
             time.sleep(interval)
-            yield 'data: {}\n\n'.format(json.dumps({'time': formatted_time()}))
+            yield 'data: {}\n\n'.format(
+                                    json.dumps({'time': formatted_time(),
+                                                'refresh_interval': interval}))
     return flask.Response(event_stream(), mimetype='text/event-stream')
-
 
 
 def formatted_time():
