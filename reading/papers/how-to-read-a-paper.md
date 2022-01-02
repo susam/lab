@@ -1,26 +1,24 @@
 How to Read a Paper
 ===================
+
 2016-02-17: S. Keshav:
 https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
 
 
-ABSTRACT
---------
+## ABSTRACT
+
 
 This article outlines a practical and efficient three-pass method for
 reading research papers.
 
 
-1. INTRODUCTION
----------------
+## 1. INTRODUCTION
 
 Learning to efficiently read a paper is a critical but rarely taught
 skill.
 
 
-
-2. THE THREE-PASS APPROACH
---------------------------
+## 2. THE THREE-PASS APPROACH
 
 The first pass gives you a general idea about the paper. The second pass lets
 you grasp the paper's content, but not its details. The third pass helps you
