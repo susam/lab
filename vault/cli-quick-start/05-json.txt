@@ -1,0 +1,82 @@
++ export VAULT_ADDR=http://127.0.0.1:8200/
++ VAULT_ADDR=http://127.0.0.1:8200/
++ vault kv get -mount secret -format=json alice
+No value found at secret/data/alice
++ read
++ vault kv put -mount secret -format=json alice city=london country=uk interest=music interest=theatre
+{
+  "request_id": "8c57607d-8d0b-7bc1-9a12-e566faeb52ee",
+  "lease_id": "",
+  "lease_duration": 0,
+  "renewable": false,
+  "data": {
+    "created_time": "2022-07-06T21:38:57.551941Z",
+    "custom_metadata": null,
+    "deletion_time": "",
+    "destroyed": false,
+    "version": 1
+  },
+  "warnings": null
+}
++ vault kv get -mount secret -format=json alice
+{
+  "request_id": "e375adf4-2e41-44f5-0615-bfa87ab4bcc3",
+  "lease_id": "",
+  "lease_duration": 0,
+  "renewable": false,
+  "data": {
+    "data": {
+      "city": "london",
+      "country": "uk",
+      "interest": [
+        "music",
+        "theatre"
+      ]
+    },
+    "metadata": {
+      "created_time": "2022-07-06T21:38:57.551941Z",
+      "custom_metadata": null,
+      "deletion_time": "",
+      "destroyed": false,
+      "version": 1
+    }
+  },
+  "warnings": null
+}
++ read
++ vault kv put -mount secret -format=json alice city=oxford
+{
+  "request_id": "d130113b-5e9b-f23b-4e1a-60b787d33a2c",
+  "lease_id": "",
+  "lease_duration": 0,
+  "renewable": false,
+  "data": {
+    "created_time": "2022-07-06T21:38:58.716077Z",
+    "custom_metadata": null,
+    "deletion_time": "",
+    "destroyed": false,
+    "version": 2
+  },
+  "warnings": null
+}
++ vault kv get -mount secret -format=json alice
+{
+  "request_id": "897243e8-1aeb-cc84-c827-6911e247863b",
+  "lease_id": "",
+  "lease_duration": 0,
+  "renewable": false,
+  "data": {
+    "data": {
+      "city": "oxford"
+    },
+    "metadata": {
+      "created_time": "2022-07-06T21:38:58.716077Z",
+      "custom_metadata": null,
+      "deletion_time": "",
+      "destroyed": false,
+      "version": 2
+    }
+  },
+  "warnings": null
+}
++ read

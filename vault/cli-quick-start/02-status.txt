@@ -1,0 +1,15 @@
++ VAULT_ADDR=http://127.0.0.1:8200/
++ vault status
+Key             Value
+---             -----
+Seal Type       shamir
+Initialized     true
+Sealed          false
+Total Shares    1
+Threshold       1
+Version         1.11.0
+Build Date      2022-06-17T15:48:44Z
+Storage Type    inmem
+Cluster Name    vault-cluster-19392ee4
+Cluster ID      572a7e9f-fa1d-5ab1-0936-a35be6c270a1
+HA Enabled      false

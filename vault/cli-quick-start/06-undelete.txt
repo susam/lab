@@ -1,0 +1,83 @@
++ export VAULT_ADDR=http://127.0.0.1:8200/
++ VAULT_ADDR=http://127.0.0.1:8200/
++ vault kv put secret/alice city=london country=uk interest=music interest=theatre
+== Secret Path ==
+secret/data/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-06T21:44:05.169037Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
++ vault kv put secret/alice city=oxford country=uk interest=painting interest=tennis
+== Secret Path ==
+secret/data/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-06T21:44:05.258419Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            2
++ vault kv get secret/alice
+== Secret Path ==
+secret/data/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-06T21:44:05.258419Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            2
+
+====== Data ======
+Key         Value
+---         -----
+city        oxford
+country     uk
+interest    [painting tennis]
++ read
++ vault kv delete secret/alice
+Success! Data deleted (if it existed) at: secret/data/alice
++ vault kv get secret/alice
+== Secret Path ==
+secret/data/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-06T21:44:05.258419Z
+custom_metadata    <nil>
+deletion_time      2022-07-06T21:44:07.038128Z
+destroyed          false
+version            2
+
++ read
++ vault kv undelete -versions=2 secret/alice
+Success! Data written to: secret/undelete/alice
++ vault kv get secret/alice
+== Secret Path ==
+secret/data/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-06T21:44:05.258419Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            2
+
+====== Data ======
+Key         Value
+---         -----
+city        oxford
+country     uk
+interest    [painting tennis]

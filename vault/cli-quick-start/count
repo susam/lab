@@ -1,0 +1,16 @@
+#!/bin/sh
+
+chmod u+x *.sh
+
+sh_files=$(ls -1 *.sh | wc -l)
+txt_files=$(ls -1 *.txt | wc -l)
+
+sh_serial=$(ls -1 *.sh | cut -d- -f1 | sort -n | tail -n 1)
+txt_serial=$(ls -1 *.txt | cut -d- -f1 | sort -n | tail -n 1)
+
+echo Files: $sh_files, $txt_files
+echo Serial: $sh_serial, $txt_serial
+
+[ $sh_files -ne $txt_files ] && echo Unequal number of scripts and output files
+[ $sh_files -ne $sh_serial ] && echo Unequal script serial number and file count
+[ $txt_files -ne $txt_serial ] && echo Unequal output serial number and file count

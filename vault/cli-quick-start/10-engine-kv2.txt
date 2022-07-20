@@ -1,0 +1,96 @@
++ export VAULT_ADDR=http://127.0.0.1:8200/
++ VAULT_ADDR=http://127.0.0.1:8200/
++ vault secrets enable kv-v2
+Success! Enabled the kv-v2 secrets engine at: kv-v2/
++ vault secrets enable kv
+Success! Enabled the kv secrets engine at: kv/
++ vault secrets list
+Path          Type         Accessor              Description
+----          ----         --------              -----------
+cubbyhole/    cubbyhole    cubbyhole_df2b18aa    per-token private secret storage
+identity/     identity     identity_f8efb855     identity store
+kv-v2/        kv           kv_b25795b0           n/a
+kv/           kv           kv_e30ec284           n/a
+secret/       kv           kv_5004c6cb           key/value secret storage
+sys/          system       system_1b69b9a1       system endpoints used for control, policy and debugging
++ read
++ vault kv put secret/corp/hr/alice city=london country=uk
+====== Secret Path ======
+secret/data/corp/hr/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-07T12:48:26.119171Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
++ vault kv put kv-v2/corp/hr/alice city=cambridge country=uk
+====== Secret Path ======
+kv-v2/data/corp/hr/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-07T12:48:26.205758Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
++ vault kv put kv/corp/hr/alice city=oxford country=uk
+Success! Data written to: kv/corp/hr/alice
++ read
++ vault kv get -mount secret corp/hr/alice
+====== Secret Path ======
+secret/data/corp/hr/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-07T12:48:26.119171Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
+
+===== Data =====
+Key        Value
+---        -----
+city       london
+country    uk
++ vault kv get -mount kv-v2 corp/hr/alice
+====== Secret Path ======
+kv-v2/data/corp/hr/alice
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-07-07T12:48:26.205758Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
+
+===== Data =====
+Key        Value
+---        -----
+city       cambridge
+country    uk
++ vault kv get -mount kv corp/hr/alice
+===== Data =====
+Key        Value
+---        -----
+city       oxford
+country    uk
++ read
++ vault kv get -mount secret/corp hr/alice
+No value found at corp/data/hr/alice
++ vault kv get -mount kv-v2/corp hr/alice
+No value found at corp/data/hr/alice
++ vault kv get -mount kv/corp hr/alice
+===== Data =====
+Key        Value
+---        -----
+city       oxford
+country    uk
