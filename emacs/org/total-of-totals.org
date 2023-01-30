@@ -1,0 +1,70 @@
+* Introduction
+
+This example demonstrates how Emacs and Org mode can be used to
+maintain spreadsheets. After updating any table data in this file
+(including deleting or adding new rows of data), type C-c C-v C-b to
+automatically update all the totals, update the team-wise total in the
+summary table, as well as realign all tables.
+
+
+* Team 1
+
+| Name  | Hours |
+|-------+-------|
+| Alice |    10 |
+| Bob   |    20 |
+| Carol |    30 |
+| Dan   |    40 |
+| Erin  |    50 |
+|-------+-------|
+| Total |   150 |
+#+TBLFM: @>$2=vsum(@I..@II)
+
+
+* Team 2
+
+| Name  | Hours |
+|-------+-------|
+| Frank |    10 |
+| Grace |    20 |
+| Han   |    30 |
+|-------+-------|
+| Total |    60 |
+#+TBLFM: @>$2=vsum(@I..@II)
+
+
+* Summary
+
+#+Results: summary
+| Team   | Hours |
+|--------+-------|
+| Team 1 |   150 |
+| Team 2 |    60 |
+|--------+-------|
+| Total  |   210 |
+
+
+* Code
+
+#+NAME: summary
+#+BEGIN_SRC emacs-lisp
+  (defun create-summary ()
+    (interactive)
+    (let ((totals)
+          (grand-total 0))
+      (push (list "Team" "Hours") totals)
+      (push 'hline totals)
+      (org-table-map-tables
+       (lambda ()
+         (org-table-recalculate)
+         (org-table-align)
+         (let ((name (org-get-heading))
+               (total (string-to-number (cadar (last (org-table-to-lisp))))))
+           (when (not (string-equal name "Summary"))
+             (push (list name total) totals)
+             (setq grand-total (+ grand-total total))))))
+      (push 'hline totals)
+      (push (list "Total" grand-total) totals)
+      (reverse totals)))
+  (create-summary)
+#+END_SRC
