@@ -1,4 +1,8 @@
-p001-hello: FORCE
+p001-hello \
+p004-variables \
+p005-constants \
+p006-shadowing \
+: FORCE
 	rustfmt --check $@.rs
 	rustc $@.rs
 	./$@
