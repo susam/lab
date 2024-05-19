@@ -2,6 +2,12 @@ p001-hello \
 p004-variables \
 p005-constants \
 p006-shadowing \
+p007-integer \
+p008-float \
+p009-numeric-operations \
+p010-bool \
+p011-char \
+p012-tuple \
 : FORCE
 	rustfmt --check $@.rs
 	rustc $@.rs
