@@ -3,8 +3,8 @@ use std::mem;
 fn main() {
     let a = (1, 2, 3);
     let b = (1, 2u8);
-    println!("mem::size_of_val(&a): {}", mem::size_of_val(&a));
-    println!("mem::size_of_val(&b): {}", mem::size_of_val(&b));
+    println!("a: {a:?}; mem::size_of_val(&a): {}", mem::size_of_val(&a));
+    println!("b: {b:?}; mem::size_of_val(&b): {}", mem::size_of_val(&b));
     println!();
 
     let (c, d, e) = a;
