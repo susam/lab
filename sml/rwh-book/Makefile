@@ -9,4 +9,8 @@ p002-arithmetic \
 	@if command -v "$(MLTON)" > /dev/null; then \
 	echo ===== MLTON =====; "$(MLTON)" $@.sml && ./$@; fi
 
+clean:
+	ls -1 | grep -vE "Makefile|\.sml$$" | xargs rm
+	rm -rf foo* bar* baz*
+
 FORCE:
