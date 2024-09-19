@@ -7,6 +7,8 @@ p003-type-assertion \
 p004-type-binding \
 p005-value-binding \
 p006-substitution-principle \
+p007-let-expression \
+p008-local-declaration \
 : FORCE
 	@if command -v "$(SMLNJ)" > /dev/null; then \
 	echo ===== SMLNJ =====; CM_VERBOSE=false "$(SMLNJ)" < $@.sml; fi

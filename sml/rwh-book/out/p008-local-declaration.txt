@@ -1,0 +1,15 @@
+(1) local: a: 10
+(1) in: a: 10
+(1) in: b: 11
+(2) local: a: 10
+(2) local: b: 11
+(2) local: c: 12
+(2) in: a: 10
+(2) in: b: 11
+(2) in: c: 12
+(2) in: d: 144
+(1) local: a: 10
+(1) local: b: 11
+(1) local: d: 144
+b: 11
+d: 144
