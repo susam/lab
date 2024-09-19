@@ -1,0 +1,15 @@
+r: 3.14
+c: a
+s: abc
+b: true
+ord c: 97
+chr 65: A
+size s: 3
+b is true
+b is true
+real 3: 3
+round 1.4: 1
+round 1.5: 2
+round 2.5: 2
+less
+0

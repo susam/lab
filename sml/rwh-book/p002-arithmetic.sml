@@ -7,7 +7,7 @@ val d = 4 mod 3
 (* mlton: unhandled exception: Div *)
 (* val dz = 4 div 0 *)
 
-val _ = print ("a: " ^ Int.toString a ^ "\n");
+val _ = print ("a: " ^ Int.toString a ^ "\n")
 val _ = print ("b: " ^ Int.toString b ^ "\n")
 val _ = print ("c: " ^ Int.toString c ^ "\n")
 val _ = print ("d: " ^ Int.toString d ^ "\n")
