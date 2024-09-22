@@ -1,0 +1,12 @@
+a: 1.41421356237
+b: 1.73205080757
+fourthroot 25: 2.2360679775
+fourthroot' 25: 2.2360679775
+fourthroot'1 25: 2.2360679775
+fourthroot'2 25: 2.2360679775
+srev "unix": xinu
+pal "ot": otto
+double 10: 20
+square 10: 100
+halve 10: 5
+is_even 10: true

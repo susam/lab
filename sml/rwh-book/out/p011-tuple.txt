@@ -1,0 +1,20 @@
+#1 pair: 2
+#2 pair: 3
+
+#1 triple: 2
+#2 triple: 3.14
+#3 triple: hello
+
+#1 quadruple: 2
+#2 quadruple: 3
+#3 quadruple: 2.71
+#4 quadruple: 3.14
+
+#1 (#1 pair_of_pairs): 2
+#2 (#1 pair_of_pairs): 3
+#1 (#2 pair_of_pairs): 2.71
+#2 (#2 pair_of_pairs): 3.14
+
+#1 pair': 2
+#2 pair': 3
+

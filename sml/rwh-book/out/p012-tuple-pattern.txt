@@ -1,0 +1,16 @@
+i: 10
+s: hello
+r: 3.14
+c: a
+
+i': 10
+s': hello
+r': 3.14
+c': a
+
+r'': 3.14
+
+#1 is: 10
+#2 is: hello
+#1 rc: 3.14
+#2 rc: a

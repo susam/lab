@@ -1,0 +1,26 @@
+#id london: 101
+#name london: London
+
+#id alice: 101
+#name alice: Alice
+#id (#city alice): 201
+#name (#city alice): London
+
+person_id: 101
+person_name: Alice
+city_id: 201
+city_name: London
+
+http://example.com/
+
+example_protocol: http
+example_domain: http
+
+protocol: http
+
+protocol: http
+domain: example.com
+
+protocol: http
+domain: example.com
+page: /
