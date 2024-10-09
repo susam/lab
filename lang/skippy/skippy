@@ -1,0 +1,230 @@
+#!/usr/bin/env python3
+
+import dataclasses
+import enum
+import functools
+import operator
+import re
+import sys
+import typing
+
+
+class StrUpperEnum(enum.StrEnum):
+    "Like enum.StrEnum but makes enum values uppercase strings."
+
+    @staticmethod
+    def _generate_next_value_(
+        name: str, start: int, count: int, last_values: list[typing.Any]
+    ) -> typing.Any:
+        return name.upper()
+
+
+class TType(StrUpperEnum):
+    """Types of tokens that are passed to the parser."""
+    LPAREN = enum.auto()
+    RPAREN = enum.auto()
+    INTEGER = enum.auto()
+    FLOAT = enum.auto()
+    SYMBOL = enum.auto()
+    NEWLINE = enum.auto()
+
+
+@dataclasses.dataclass
+class Token:
+    "Token information."
+
+    value: int | float | str
+    ttype: TType
+    fname: str
+    line: int
+    col: int
+
+
+class Error(Exception):
+    "Interpreter error."
+
+    def __init__(self, token, description):
+        self._token = token
+        self._description = description
+
+    def __str__(self):
+        if self._token:
+            return (
+                f"{self._token.fname}:"
+                f"{self._token.line}:"
+                f"{self._token.col}: "
+                f"error: {self._description}"
+            )
+        return f"error: {self._description}"
+
+
+class ParseError(Error):
+    """Error encountered during parsing tokens."""
+
+
+class EvalError(Error):
+    """Error encountered during evaluation of expression tree."""
+
+
+Atom = int | float
+List = list["Expr"]
+Expr = Atom | List
+Symbol = str
+
+
+def tokenize(source: str, fname: str) -> list[Token]:
+    """Tokenize source code into a list of tokens."""
+    token_spec = (
+        (TType.LPAREN, r"\("),
+        (TType.RPAREN, r"\)"),
+        (TType.FLOAT, r"-?\d+\.\d+"),
+        (TType.INTEGER, r"-?\d+"),
+        (TType.SYMBOL, r"[^\s()]+"),
+        (TType.NEWLINE, r"\n"),
+    )
+    token_re = "|".join(
+        f"(?P<{ttype}>{token})" for ttype, token in token_spec
+    )
+    L = []
+    prev_line_end = -1
+    line = 1
+    col = 1
+    for mo in re.finditer(token_re, source):
+        ttype = TType(mo.lastgroup)
+        value = mo.group()
+        if ttype == TType.NEWLINE:
+            line += 1
+            prev_line_end = mo.start()
+            continue
+
+        if ttype == TType.FLOAT:
+            value = float(value)
+        elif ttype == TType.INTEGER:
+            value = int(value)
+
+        col = mo.start() - prev_line_end
+        L.append(Token(value, ttype, fname, line, col))
+
+    return L
+
+
+def parse(tokens: list[Token]) -> Expr:
+    """Parse list of tokens into expression tree."""
+    return parse_from_idx(tokens, 0)[0]
+
+
+def parse_from_idx(tokens: list[Token], idx: int) -> tuple[Expr, int]:
+    """Recursively parse list of tokens from given index into expression tree."""
+    if len(tokens) == 0:
+        raise ParseError(None, "empty source")
+    if idx == len(tokens):
+        raise ParseError(tokens[idx - 1], "unexpected eof")
+
+    token = tokens[idx]
+    print(":::: idx:", idx, token.ttype, token.value)
+    if token.ttype == TType.LPAREN:
+        idx += 1
+        print(":::: entered LPAREN:", idx, token.ttype, token.value)
+        L = []
+        if idx == len(tokens):
+            raise ParseError(tokens[idx - 1], "unexpected eof")
+        while idx < len(tokens) and tokens[idx].ttype != TType.RPAREN:
+            print(":::: recursing with idx:", idx, "->", idx + 1)
+            parsed, idx = parse_from_idx(tokens, idx)
+            print(":::: new idx:", idx, tokens[idx].value)
+            L.append(parsed)
+        return L, idx + 1  # Consume closing parenthesis.
+    elif token.ttype == TType.RPAREN:
+        raise SyntaxError("unexpected )")
+    else:
+        print(":::: returning token:", token, idx + 1)
+        return token, idx + 1
+
+
+std_env = {
+    "+": lambda *x: functools.reduce(operator.add, x),
+    "*": lambda *x: functools.reduce(operator.mul, x),
+    "-": lambda *x: functools.reduce(operator.sub, x),
+    "/": lambda *x: functools.reduce(operator.div, x),
+    "begin": lambda *x: x[-1],
+    "length": len,
+    "list": lambda *x: list(x),
+}
+
+
+def env_create(params, args, parent_env):
+    new_env = dict(zip(params, args))
+    new_env["(::parent::)"] = parent_env
+    return new_env
+
+
+def env_lookup(symbol: str, env: dict) -> typing.Any:
+    value = env.get(symbol)
+    if value is None:
+        parent = env.get("(::parent::)")
+        if parent is None:
+            return None
+        return env_lookup(symbol, parent)
+    return value
+
+
+def func_create(params, body, env):
+    return (params, body, env)
+
+
+def func_call(func_obj, func_args):
+    if callable(func_obj):
+        return func_obj(*func_args)
+
+    func_params, func_body, func_env = func_obj
+    func_env = env_create(func_params, func_args, func_env)
+    return eval(func_body, func_env)
+
+
+def eval(expr: Expr, env: dict = std_env) -> Expr:
+    if isinstance(expr, Symbol):
+        return env_lookup(expr, env)
+
+    if isinstance(expr, Atom):
+        return expr
+
+    op, *args = expr
+
+    if op == "if":
+        test_expr, then_expr, else_expr = args
+        selected_expr = then_expr if eval(test_expr, env) else else_expr
+        return eval(selected_expr, env)
+
+    if op == "define":
+        symbol, val_expr = args
+        env[symbol] = eval(val_expr, env)
+        return
+
+    if op == "lambda":
+        params, body = args
+        return func_create(params, body, env)
+
+    func_obj = eval(op, env)
+    func_args = [eval(arg, env) for arg in args]
+    result = func_call(func_obj, func_args)
+    return result
+
+
+def main() -> None:
+    fname: str
+    source: str
+    if len(sys.argv) == 1:
+        fname = "<stdin>"
+        source = sys.stdin.read()
+    elif len(sys.argv) == 2:
+        fname = sys.argv[1]
+        source = open(fname).read()
+    else:
+        print(f"Usage: {sys.argv[0]} [FILE]")
+        sys.exit(1)
+
+    print("main:", eval(parse(tokenize(source, fname))))
+
+
+if __name__ == "__main__":
+    main()
