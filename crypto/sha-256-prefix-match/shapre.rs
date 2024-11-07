@@ -13,8 +13,7 @@ fn _printt<T>(value: &T) {
 }
 
 fn check(candidate: String) -> bool {
-    let msg = "The SHA-256 digest of this message, in hexadecimal form, begins with the digits "
-        .to_owned()
+    let msg = "The SHA-256 digest of this message, in hexadecimal form, begins with ".to_owned()
         + &candidate
         + ".";
     let digest = Sha256::digest(&msg);
@@ -36,7 +35,7 @@ fn solve(length: u8) {
     let mut arrangement: Vec<u8> = vec![0; cast!(length, usize)];
     let max_count: u128 = cast!(base, u128).pow(cast!(length, u32)); // Typically <= 16^32 = 2^128.
     let mut count: u128 = 0;
-    let modulus: u128 = 10_000_000;
+    let chunk_size: u128 = 10_000_000;
     let start_time: Instant = Instant::now();
     println!("solving for length {length} with {max_count} arrangements");
     loop {
@@ -53,12 +52,13 @@ fn solve(length: u8) {
             .map(|&i| chars[cast!(i, usize)])
             .collect();
         count += 1;
-        if count == 1 || count % modulus == 0 {
+        if count == 1 || count % chunk_size == 0 {
             let elapsed: u64 = start_time.elapsed().as_secs();
+            let remaining: u64 = cast!((max_count - count) * cast!(elapsed, u128) / count, u64);
             println!(
-                "[{elapsed} s] checked {} of {}",
-                count / modulus,
-                max_count / modulus,
+                "[{elapsed} s of {remaining} s] checked chunk {} of {}",
+                count / chunk_size,
+                (max_count + chunk_size - 1) / chunk_size,
             )
         }
         if check(candidate.clone()) {
