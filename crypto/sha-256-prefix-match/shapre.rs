@@ -36,8 +36,8 @@ fn solve(length: u8) {
     let mut arrangement: Vec<u8> = vec![0; cast!(length, usize)];
     let max_count: u128 = cast!(base, u128).pow(cast!(length, u32)); // Typically <= 16^32 = 2^128.
     let mut count: u128 = 0;
+    let modulus: u128 = 10_000_000;
     let start_time: Instant = Instant::now();
-    let modulus = 10_000_000;
     println!("solving for length {length} with {max_count} arrangements");
     loop {
         let mut i: usize = 0;
