@@ -34,3 +34,6 @@ texmf/
 
 # Generated image files.
 *.png
+
+# Rust.
+target/
