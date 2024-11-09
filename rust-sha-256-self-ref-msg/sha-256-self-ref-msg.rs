@@ -1,5 +1,4 @@
 use sha2::{Digest, Sha256};
-use std::any::type_name_of_val;
 use std::time::Instant;
 
 macro_rules! cast {
@@ -8,14 +7,8 @@ macro_rules! cast {
     };
 }
 
-fn _printt<T>(value: &T) {
-    println!("{}", type_name_of_val(value));
-}
-
 fn check(candidate: String) -> bool {
-    let msg = "The SHA-256 digest of this message, in hexadecimal form, begins with ".to_owned()
-        + &candidate
-        + ".";
+    let msg = "The SHA-256 hash of this message begins with ".to_owned() + &candidate + ".";
     let digest = Sha256::digest(&msg);
     let result = format!("{digest:x}");
     if result.starts_with(&candidate) {
@@ -39,6 +32,18 @@ fn solve(length: u8) {
     let start_time: Instant = Instant::now();
     println!("solving for length {length} with {max_count} arrangements");
     loop {
+        // Generate candidate string.
+        let candidate: String = arrangement
+            .iter()
+            .map(|&i| chars[cast!(i, usize)])
+            .collect();
+
+        // Check if the candidate string is a solution.
+        if check(candidate.clone()) {
+            break;
+        }
+
+        // Compute the next arrangement for generating the next candidate.
         let mut i: usize = 0;
         while i == 0 || (arrangement[i - 1] == 0 && i < cast!(length, usize)) {
             arrangement[i] = (arrangement[i] + 1) % base;
@@ -47,34 +52,22 @@ fn solve(length: u8) {
         if i == cast!(length, usize) && arrangement[i - 1] == 0 {
             break;
         }
-        let candidate: String = arrangement
-            .iter()
-            .map(|&i| chars[cast!(i, usize)])
-            .collect();
+
+        // Log progress after every chunk_size iterations.
         count += 1;
-        if count == 1 || count % chunk_size == 0 {
+        if count % chunk_size == 0 {
             let elapsed: u64 = start_time.elapsed().as_secs();
             let remaining: u64 = cast!((max_count - count) * cast!(elapsed, u128) / count, u64);
             println!(
                 "[{elapsed} s of {remaining} s] checked chunk {} of {}",
                 count / chunk_size,
                 (max_count + chunk_size - 1) / chunk_size,
-            )
-        }
-        if check(candidate.clone()) {
-            break;
+            );
         }
     }
     println!();
 }
 
 fn main() {
-    solve(1);
-    solve(2);
-    solve(3);
-    solve(4);
-    solve(5);
-    solve(6);
     solve(7);
-    solve(8);
 }
