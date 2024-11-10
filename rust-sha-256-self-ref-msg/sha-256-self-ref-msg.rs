@@ -69,5 +69,5 @@ fn solve(length: u8) {
 }
 
 fn main() {
-    solve(7);
+    solve(9);
 }
