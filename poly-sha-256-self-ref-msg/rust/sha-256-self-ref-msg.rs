@@ -7,15 +7,12 @@ macro_rules! cast {
     };
 }
 
-fn check(candidate: String) -> bool {
-    let msg = "The SHA-256 hash of this message begins with ".to_owned() + &candidate + ".";
+fn check(candidate: String) {
+    let msg = "The SHA-256 hash of this text begins with ".to_owned() + &candidate + ".";
     let digest = Sha256::digest(&msg);
     let result = format!("{digest:x}");
     if result.starts_with(&candidate) {
         println!("{msg}\n{result}");
-        true
-    } else {
-        false
     }
 }
 
@@ -39,9 +36,7 @@ fn solve(length: u8) {
             .collect();
 
         // Check if the candidate string is a solution.
-        if check(candidate.clone()) {
-            break;
-        }
+        check(candidate.clone());
 
         // Compute the next arrangement for generating the next candidate.
         let mut i: usize = 0;
@@ -71,5 +66,5 @@ fn solve(length: u8) {
 }
 
 fn main() {
-    solve(9);
+    solve(7);
 }
