@@ -1,0 +1,11 @@
+[package]
+name = "sha-prefix-embed"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sha2 = "0.10"
+
+[[bin]]
+name = "sha-prefix-embed"
+path = "sha-prefix-embed.rs"

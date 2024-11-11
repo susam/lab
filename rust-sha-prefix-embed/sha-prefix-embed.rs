@@ -8,7 +8,7 @@ macro_rules! cast {
 }
 
 fn check(candidate: String) -> bool {
-    let msg = "The SHA-256 hash of this message begins with ".to_owned() + &candidate + ".";
+    let msg = "The SHA-256 hash of this sentence begins with ".to_owned() + &candidate + ".";
     let digest = Sha256::digest(&msg);
     let result = format!("{digest:x}");
     if result.starts_with(&candidate) {
