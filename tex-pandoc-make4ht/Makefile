@@ -1,3 +1,5 @@
+all: pdf pandoc1 pandoc2 make4ht1
+
 pdf: clean
 	pdflatex foo.tex
 	pdflatex foo.tex
@@ -17,13 +19,13 @@ pandoc2:
 
 make4ht1:
 	make4ht foo mathjax
-	sed 's/foo\.css/foo-make4ht\.css/g' foo.html > foo-make4ht1.html
+	sed 's/foo\.css/foo-make4ht1\.css/g' foo.html > foo-make4ht1.html
 	mv foo.css foo-make4ht1.css
 	make view FILE=foo-make4ht1.html
 	make blob FILE=foo-make4ht1.html
 	make blob FILE=foo-make4ht1.css
 
-setup:
+deps:
 	sudo tlmgr install make4ht luaxml tex4ht environ trimspaces
 
 view:
@@ -35,7 +37,7 @@ view:
 	    echo Cannot find xdg-open or open; \
 	fi
 
-DIST = ../../../blob/lab/tex/latex-to-html/
+DIST = ../../blob/lab/tex/latex-to-html/
 blob:
 	mkdir -p $(DIST)
 	cp $(FILE) $(DIST)
@@ -52,4 +54,4 @@ clean:
 	rm -rf *.4ct *.4tc *.css *.dvi *.idv *.lg *.tmp *.xref
 
 clear:
-	rm foo-pandoc1.html foo-pandoc2.html
+	rm -f foo-pandoc1.html foo-pandoc2.html foo-make4ht1.html

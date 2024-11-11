@@ -1,5 +1,0 @@
-#!/bin/sh
-for f in "$@"
-do
-    sh -x "$f" 2>&1 | tee "${f%.sh}.txt"
-done
