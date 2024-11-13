@@ -8,14 +8,13 @@ import (
 	"time"
 )
 
-func check(candidate []byte) {
-	var msg string = "The SHA-256 hash of this text begins with " + string(candidate) + "."
+func check(candidate string) {
+	var msg string = "The SHA-256 hash of this sentence begins with " + candidate + "."
 	var digest [32]byte = sha256.Sum256([]byte(msg))
 	var result string = fmt.Sprintf("%x", digest)
-	if strings.HasPrefix(result, string(candidate)) {
+	if strings.HasPrefix(result, candidate) {
 		var result string = fmt.Sprintf("%x", digest)
-		fmt.Println(msg)
-		fmt.Println(result)
+		fmt.Printf("\n%s\n%s\n\n", msg, result)
 	}
 }
 
@@ -36,33 +35,34 @@ func solve(length uint8) { // Let length <= 16.
 		}
 
 		// Check if the candidate message is a solution.
-		check(candidate)
-
-		// Compute the next arrangement used to generate the next candidate.
-		var i uint8
-		for i = 0; i == 0 || arrangement[i-1] == 0 && i < length; i++ {
-			arrangement[i] = (arrangement[i] + 1) % base
-		}
+		check(string(candidate))
 
 		// Log progress after every chunkSize iterations.
 		count++
 		if count%chunkSize == 0 || count == maxCount {
 			var elapsed uint64 = uint64(time.Since(startTime).Milliseconds() / 1000)
 			var remaining uint64 = (maxCount - count) * elapsed / count
-			fmt.Printf("[%d s of %d s] checked chunk %d of %d\n",
+			fmt.Printf("[%d s of %d s] checked chunk %d of %d (%s)\n",
 				elapsed,
 				remaining,
 				(count+chunkSize-1)/chunkSize,
 				(maxCount+chunkSize-1)/chunkSize,
+				candidate,
 			)
 		}
 
+		// Compute the next arrangement used to generate the next candidate.
+		var i uint8 = length // Index of last cell incremented.
+		for i == length || (arrangement[i] == 0 && i > 0) {
+			i--
+			arrangement[i] = (arrangement[i] + 1) % base
+		}
+
 		// Quit if there are no more arrangements to check.
-		if i == length && arrangement[i-1] == 0 {
+		if i == 0 && arrangement[0] == 0 {
 			break
 		}
 	}
-	fmt.Println()
 }
 
 func main() {

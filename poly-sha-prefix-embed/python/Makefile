@@ -1,7 +1,7 @@
 VENV = ~/.venv/lint
 
 run: lint
-	time python3 sha-256-self-ref-msg.py
+	time python3 sha-prefix-embed.py
 
 venv: FORCE
 	rm -rf $(VENV)/

@@ -13,8 +13,8 @@ def solve(length: int):
     print(f"solving for length {length} with {max_count} arrangements")
     for arrangement in itertools.product(chars, repeat=length):
         # Generate candidate message.
-        candidate: str = "".join(arrangement[::-1])
-        msg: str = "The SHA-256 hash of this text begins with " + candidate + "."
+        candidate: str = "".join(arrangement)
+        msg: str = "The SHA-256 hash of this sentence begins with " + candidate + "."
 
         # Check if the candidate string is a solution.
         result: str = hashlib.sha256(msg.encode()).hexdigest()
@@ -30,7 +30,7 @@ def solve(length: int):
             print(
                 f"[{elapsed} s of {remaining} s] checked chunk "
                 f"{(count + chunk_size - 1) // chunk_size} of "
-                f"{(max_count + chunk_size - 1) // chunk_size}"
+                f"{(max_count + chunk_size - 1) // chunk_size} ({candidate})"
             )
 
 

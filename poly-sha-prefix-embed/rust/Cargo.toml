@@ -7,5 +7,5 @@ edition = "2021"
 sha2 = "0.10"
 
 [[bin]]
-name = "sha-256-self-ref-msg"
-path = "sha-256-self-ref-msg.rs"
+name = "sha-prefix-embed"
+path = "sha-prefix-embed.rs"

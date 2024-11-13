@@ -8,7 +8,7 @@ macro_rules! cast {
 }
 
 fn check(candidate: &String) -> bool {
-    let msg = "The SHA-256 hash of this sentence begins with ".to_owned() + &candidate + ".";
+    let msg = "The SHA-256 hash of this sentence begins with ".to_owned() + candidate + ".";
     let digest = Sha256::digest(&msg);
     let result = format!("{digest:x}");
     if result.starts_with(candidate) {
@@ -58,7 +58,7 @@ fn solve(length: u8) {
 
         // Compute the next arrangement for generating the next candidate.
         let mut i: usize = cast!(length, usize); // Index of last cell incremented.
-        while i == cast!(length, usize) || (arrangement[i] == 0 && i >= 1) {
+        while i == cast!(length, usize) || (arrangement[i] == 0 && i > 0) {
             i -= 1;
             arrangement[i] = (arrangement[i] + 1) % base;
         }
