@@ -19,8 +19,7 @@ def solve(length: int):
         # Check if the candidate string is a solution.
         result: str = hashlib.sha256(msg.encode()).hexdigest()
         if result.startswith(candidate):
-            print(msg)
-            print(result)
+            print(f"\n{msg}\n{result}\n")
 
         # Log progress after every chunk_size iterations.
         count += 1

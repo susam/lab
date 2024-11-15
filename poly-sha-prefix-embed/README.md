@@ -6,6 +6,17 @@ that describe their own SHA-256 digests in various programming
 languages.  The running time of each program is noted in the table
 below.
 
+**Caution:** The results presented here should not be regarded as
+rigorous performance benchmarks.  Proper benchmarking demands a
+controlled environment, similar to the setup described in [The
+Computer Language Benchmarks Game][].  No such level of sophistication
+has been applied here.  The results presented here merely consist of
+the outputs obtained from the Unix `time` command.  These results were
+gathered solely out of curiosity and for the purpose of recording the
+running time of each program on my personal device.
+
+[TCLBG]: https://benchmarksgame-team.pages.debian.net/benchmarksgame/how-programs-are-measured.html
+
 
 Result Set
 ----------
@@ -38,39 +49,39 @@ trials have been arranged in the ascending order of `real` time.
 
 | Language |   real |   user |  sys |
 |----------|-------:|-------:|-----:|
-| Go       |  84.58 |  85.23 | 1.28 |
-| Python   | 153.09 | 152.86 | 0.22 |
-| Rust     |  89.22 |  88.81 | 0.14 |
+| Go       |  86.03 |  86.72 | 1.24 |
+| Python   | 143.02 | 142.81 | 0.20 |
+| Rust     |  84.54 |  84.17 | 0.16 |
 
 
 ### Go Results
 
 | Trial |  real |  user |  sys |
 |------:|------:|------:|-----:|
-|     1 | 84.44 | 85.11 | 1.27 |
-|     2 | 84.49 | 85.12 | 1.30 |
-|     3 | 84.63 | 85.28 | 1.28 |
-|     4 | 84.65 | 85.29 | 1.31 |
-|     5 | 84.69 | 85.35 | 1.24 |
+|     1 | 85.96 | 86.65 | 1.25 |
+|     2 | 86.00 | 86.69 | 1.24 |
+|     3 | 86.03 | 86.72 | 1.22 |
+|     4 | 86.07 | 86.72 | 1.23 |
+|     5 | 86.09 | 86.80 | 1.25 |
 
 
 ### Python Results
 
 | Trial |   real |   user |  sys |
 |------:|-------:|-------:|-----:|
-|     1 | 152.02 | 151.80 | 0.21 |
-|     2 | 152.59 | 152.33 | 0.25 |
-|     3 | 153.38 | 153.16 | 0.22 |
-|     4 | 153.46 | 153.24 | 0.21 |
-|     5 | 153.99 | 153.77 | 0.22 |
+|     1 | 141.61 | 141.41 | 0.20 |
+|     2 | 142.21 | 142.01 | 0.20 |
+|     3 | 143.29 | 143.08 | 0.20 |
+|     4 | 143.70 | 143.49 | 0.20 |
+|     5 | 144.27 | 144.06 | 0.20 |
 
 
 ### Rust Results
 
 | Trial |  real |  user |  sys |
 |------:|------:|------:|-----:|
-|     1 | 88.94 | 88.58 | 0.14 |
-|     2 | 88.99 | 88.61 | 0.14 |
-|     3 | 89.00 | 88.55 | 0.14 |
-|     4 | 89.72 | 89.24 | 0.15 |
-|     5 | 89.45 | 89.08 | 0.15 |
+|     1 | 84.47 | 84.10 | 0.15 |
+|     2 | 84.48 | 84.12 | 0.15 |
+|     3 | 84.56 | 84.20 | 0.15 |
+|     4 | 84.56 | 84.20 | 0.15 |
+|     5 | 84.63 | 84.21 | 0.18 |
