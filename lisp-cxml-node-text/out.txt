@@ -1,0 +1,20 @@
+
+author: "Tom M. Apostol"
+title: "Introduction to Analytic Number Theory"
+edition: ""
+year: "1976"
+
+author: "Marcus du Satoy"
+title: "The Music of the Primes"
+edition: ""
+year: "2003"
+
+author: "Ian Stewart"
+title: "Galois Theory"
+edition: "5"
+year: "2023"
+
+author: ""
+title: ""
+edition: ""
+year: ""

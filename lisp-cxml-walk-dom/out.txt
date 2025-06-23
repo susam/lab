@@ -43,6 +43,7 @@
     <#text> TEXT "↵  "
     <book> ELEMENT
       <author> ELEMENT
+        <#comment> COMMENT " comment "
       <title> ELEMENT
       <year> ELEMENT
     <#text> TEXT "↵"
