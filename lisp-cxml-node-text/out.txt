@@ -1,3 +1,4 @@
+document-element: "books"
 
 author: "Tom M. Apostol"
 title: "Introduction to Analytic Number Theory"
