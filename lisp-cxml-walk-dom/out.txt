@@ -1,0 +1,48 @@
+<#document> DOCUMENT
+  <books> ELEMENT
+    <#text> TEXT "↵  "
+    <book> ELEMENT
+      <#text> TEXT "↵    "
+      <author> ELEMENT
+        <#text> TEXT "Tom M. Apostol"
+      <#text> TEXT "↵    "
+      <title> ELEMENT
+        <#text> TEXT "Introduction to Analytic Number Theory"
+      <#text> TEXT "↵    "
+      <year> ELEMENT
+        <#text> TEXT "1976"
+      <#text> TEXT "↵  "
+    <#text> TEXT "↵  "
+    <book> ELEMENT
+      <#text> TEXT "↵    "
+      <author> ELEMENT
+        <#text> TEXT "Marcus du Satoy"
+      <title> ELEMENT
+        <#text> TEXT "The Music of the Primes"
+      <year> ELEMENT
+        <#text> TEXT "2003"
+      <#text> TEXT "↵  "
+    <#text> TEXT "↵  "
+    <book> ELEMENT
+      <#text> TEXT "↵    "
+      <author> ELEMENT
+        <#comment> COMMENT " surprise "
+        <#text> TEXT "Ian "
+        <#comment> COMMENT "comment "
+        <#text> TEXT "Stewart"
+      <#text> TEXT "↵    "
+      <title> ELEMENT
+        <#cdata-section> CDATA-SECTION "Galois Theory"
+      <#text> TEXT "↵    "
+      <edition> ELEMENT
+        <#text> TEXT "5"
+      <#text> TEXT "↵    "
+      <year> ELEMENT
+        <#text> TEXT "2023"
+      <#text> TEXT "↵  "
+    <#text> TEXT "↵  "
+    <book> ELEMENT
+      <author> ELEMENT
+      <title> ELEMENT
+      <year> ELEMENT
+    <#text> TEXT "↵"

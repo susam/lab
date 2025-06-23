@@ -1,0 +1,7 @@
+https://github.com/sharplispers/cxml/archive/2d8fa42.tar.gz
+https://github.com/sharplispers/closure-common/archive/e3c5f5f.tar.gz
+https://github.com/trivial-gray-streams/trivial-gray-streams/archive/a7ead68.tar.gz
+https://github.com/cl-babel/babel/archive/v0.5.0.tar.gz
+https://github.com/trivial-features/trivial-features/archive/v1.0.tar.gz
+https://gitlab.common-lisp.net/alexandria/alexandria/-/archive/v1.4/alexandria-v1.4.tar.gz
+https://github.com/lisp/com.b9.puri.ppcre/archive/a799925.tar.gz

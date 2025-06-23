@@ -1,0 +1,17 @@
+<books>
+  <book>
+    <author>Tom M. Apostol</author>
+    <title>Introduction to Analytic Number Theory</title>
+    <year>1976</year>
+  </book>
+  <book>
+    <author>Marcus du Satoy</author><title>The Music of the Primes</title><year>2003</year>
+  </book>
+  <book>
+    <author><!-- surprise -->Ian <!--comment -->Stewart</author>
+    <title><![CDATA[Galois Theory]]></title>
+    <edition>5</edition>
+    <year>2023</year>
+  </book>
+  <book><author></author><title></title><year></year></book>
+</books>
